@@ -13,9 +13,10 @@ function createPrismaClient() {
     throw new Error("DATABASE_URL environment variable is not set");
   }
   
+  // @ts-ignore - Prisma 7 datasourceUrl option
   return new PrismaClient({
     log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-    accelerateUrl: databaseUrl,
+    datasourceUrl: databaseUrl,
   });
 }
 
