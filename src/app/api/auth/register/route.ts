@@ -62,16 +62,18 @@ export async function POST(req: Request) {
       },
     });
 
-    // Create user directory on disk
+    // Create user directory on disk (skip on Vercel/serverless)
     try {
-      ensureUserDirectory({
-        email: newUser.email,
-        username: newUser.username,
-        role: newUser.role,
-        plan: newUser.plan,
-        id: newUser.id,
-        password,
-      });
+      if (process.env.VERCEL !== "1") {
+        ensureUserDirectory({
+          email: newUser.email,
+          username: newUser.username,
+          role: newUser.role,
+          plan: newUser.plan,
+          id: newUser.id,
+          password,
+        });
+      }
     } catch (e) {
       console.error("Failed to create user directory:", e);
     }
@@ -88,6 +90,6 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.error("Dashboard Register Error:", error);
-    return NextResponse.json({ error: "An unexpected error occurred." }, { status: 500 });
+    return NextResponse.json({ error: "An unexpected error occurred.", details: String(error) }, { status: 500 });
   }
 }
