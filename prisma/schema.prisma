@@ -1,0 +1,148 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+model User {
+  id             String         @id @default(uuid())
+  username       String         @unique
+  email          String         @unique
+  password       String
+  role           String         @default("USER") // USER, ADMIN, ADMIN_MINI
+  plan           String         @default("FREE") // FREE, MONTHLY, YEARLY
+  status         String         @default("ACTIVE") // ACTIVE, BANNED
+  subscriptionEnd DateTime?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  applications   Application[]
+  sessions       Session[]
+  payments       Payment[]
+}
+
+model Application {
+  id          String    @id @default(uuid())
+  name        String
+  secret      String    // App secret key generated in backend
+  version     String    @default("1.0")
+  status      String    @default("ACTIVE") // ACTIVE, PAUSED
+  hwidLock    Boolean   @default(true)
+  encryption  Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  licenses    License[]
+  logs        Log[]
+  files       File[]
+  webhooks    Webhook[]
+}
+
+model License {
+  id              String      @id @default(uuid())
+  key             String      @unique
+  label           String?     // Custom label / note
+  duration        String      @default("30d") // 1d, 7d, 30d, lifetime, custom
+  expiresAt       DateTime?
+  hwid            String?     // Bounded hardware ID
+  hwidLock        Boolean     @default(true)
+  status          String      @default("ACTIVE") // ACTIVE, PAUSED, BANNED
+  activationLimit Int         @default(1)
+  activations     Int         @default(0)
+  bannedAt        DateTime?
+  banReason       String?
+  createdAt       DateTime    @default(now())
+  appId           String
+  application     Application @relation(fields: [appId], references: [id], onDelete: Cascade)
+  clientUsers     ClientUser[]
+}
+
+model ClientUser {
+  id        String   @id @default(uuid())
+  username  String
+  password  String
+  hwid      String?
+  ip        String?
+  lastLogin DateTime @default(now())
+  createdAt DateTime @default(now())
+  licenseId String
+  license   License  @relation(fields: [licenseId], references: [id], onDelete: Cascade)
+
+  @@unique([username, licenseId])
+}
+
+model Log {
+  id          String      @id @default(uuid())
+  action      String      // LOGIN, REGISTER, VALIDATE, BAN, ACTIVATE
+  ip          String?
+  hwid        String?
+  message     String
+  createdAt   DateTime    @default(now())
+  appId       String?
+  application Application? @relation(fields: [appId], references: [id], onDelete: Cascade)
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model ApiRequest {
+  id        String   @id @default(uuid())
+  path      String
+  method    String
+  ip        String?
+  appId     String?
+  status    Int
+  createdAt DateTime @default(now())
+}
+
+model Payment {
+  id            String   @id @default(uuid())
+  amount        Float
+  currency      String   @default("USD")
+  method        String   // STRIPE, PAYPAL, CRYPTO
+  status        String   // PENDING, COMPLETED, FAILED
+  planName      String
+  transactionId String   @unique
+  createdAt     DateTime @default(now())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model File {
+  id          String      @id @default(uuid())
+  name        String
+  path        String      // Storage path or URL
+  size        Int
+  version     String      @default("1.0")
+  downloads   Int         @default(0)
+  fileData    Bytes?      // Store raw file binary inside DB for Vercel/Render compatibility
+  createdAt   DateTime    @default(now())
+  appId       String
+  application Application @relation(fields: [appId], references: [id], onDelete: Cascade)
+}
+
+model Webhook {
+  id          String      @id @default(uuid())
+  url         String
+  event       String      // ON_LOGIN, ON_REGISTER, ON_BAN
+  active      Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  appId       String
+  application Application @relation(fields: [appId], references: [id], onDelete: Cascade)
+}
+
+model HwidBlacklist {
+  id        String   @id @default(uuid())
+  hwid      String   @unique
+  reason    String?
+  appId     String
+  createdAt DateTime @default(now())
+}

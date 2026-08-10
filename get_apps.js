@@ -1,0 +1,1 @@
+﻿const { PrismaClient } = require('./src/generated/prisma'); const prisma = new PrismaClient({ datasources: { db: { url: 'file:./dev.db' } } }); async function main() { const apps = await prisma.application.findMany(); console.log(JSON.stringify(apps, null, 2)); } main().catch(console.error).finally(() => prisma.$disconnect());
