@@ -44,7 +44,7 @@ export async function POST(req: Request) {
     // Find HWID to blacklist. Check license first, then associated clientUsers.
     let hwid = license.hwid;
     if (!hwid && license.clientUsers.length > 0) {
-      const clientWithHwid = license.clientUsers.find(cu => cu.hwid);
+      const clientWithHwid = license.clientUsers.find((cu: any) => cu.hwid);
       if (clientWithHwid) {
         hwid = clientWithHwid.hwid;
       }
