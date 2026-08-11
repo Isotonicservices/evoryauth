@@ -110,7 +110,7 @@ export default function AdminPanel() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* System Users lists */}
             <div className="lg:col-span-2">
-              <GlowCard glowColor="purple">
+              <GlowCard glowColor="red">
                 <h3 className="text-sm font-bold mb-6 flex items-center gap-2">
                   <Users className="h-4 w-4 text-purple-400" /> Registered Platform Users
                 </h3>
@@ -186,7 +186,7 @@ export default function AdminPanel() {
 
             {/* Global Logs panel */}
             <div>
-              <GlowCard glowColor="blue">
+              <GlowCard glowColor="red">
                 <h3 className="text-sm font-bold mb-6 flex items-center gap-2">
                   System Logs
                 </h3>

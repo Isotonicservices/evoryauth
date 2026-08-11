@@ -271,7 +271,7 @@ export default function LicensesManager() {
           </div>
 
           {/* Generate Card */}
-          <GlowCard glowColor="blue" className="mb-8" withShimmer>
+          <GlowCard glowColor="red" className="mb-8" withShimmer>
             <h3 className="text-sm font-bold mb-6 flex items-center gap-2 text-white">
               <div className="bg-blue-500/20 p-1 rounded">
                 <Plus className="h-4 w-4 text-blue-400" />
@@ -360,7 +360,7 @@ export default function LicensesManager() {
           )}
 
           {/* Licenses table */}
-          <GlowCard glowColor="purple" className="p-0 overflow-hidden">
+          <GlowCard glowColor="red" className="p-0 overflow-hidden">
             <div className="p-6 border-b border-white/5 flex items-center justify-between flex-wrap gap-4 bg-white/[0.01]">
               <h3 className="text-sm font-bold flex items-center gap-3 text-white">
                 <div className="bg-purple-500/20 p-1.5 rounded-lg border border-purple-500/30">

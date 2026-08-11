@@ -339,7 +339,7 @@ else:
 
           {/* App selector */}
           {apps.length > 0 && (
-            <GlowCard glowColor="blue" className="mb-8">
+            <GlowCard glowColor="red" className="mb-8">
               <div className="flex items-center gap-3 flex-wrap">
                 <Zap className="h-4 w-4 text-blue-400 shrink-0" />
                 <span className="text-xs font-bold">Quick Fill — Select your app to auto-fill examples:</span>
@@ -368,7 +368,7 @@ else:
 
           {/* Application Credentials Card */}
           {appId && appId !== "YOUR_APP_ID" && (
-            <GlowCard glowColor="purple" className="mb-8">
+            <GlowCard glowColor="red" className="mb-8">
               <div className="flex justify-between items-start mb-6">
                 <div>
                   <h3 className="text-sm font-bold text-white">Application Credentials</h3>
@@ -444,7 +444,7 @@ else:
           )}
 
           {/* Auth header note */}
-          <GlowCard glowColor="purple" className="mb-8">
+          <GlowCard glowColor="red" className="mb-8">
             <div className="flex items-start gap-3">
               <Shield className="h-4 w-4 text-purple-400 mt-0.5 shrink-0" />
               <div>
@@ -640,7 +640,7 @@ if (data.success) {
               <h2 className="text-sm font-bold text-white">How to Integrate in Your Loader/Project</h2>
             </div>
             
-            <GlowCard glowColor="blue">
+            <GlowCard glowColor="red">
               <div className="space-y-4 text-sm text-slate-300">
                 <p>Follow these steps to integrate Hyper Auth into your custom loader or application:</p>
                 <ol className="list-decimal pl-5 space-y-3">
@@ -701,7 +701,7 @@ if (data.success) {
           </section>
 
           {/* Error codes */}
-          <GlowCard glowColor="blue">
+          <GlowCard glowColor="red">
             <h3 className="text-sm font-bold mb-4 flex items-center gap-2">
               <Shield className="h-4 w-4 text-blue-400" /> Error Codes
             </h3>

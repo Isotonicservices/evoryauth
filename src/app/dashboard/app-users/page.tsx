@@ -300,14 +300,14 @@ export default function AppUsersManager() {
               {
                 label: "Banned App Users",
                 value: clientUsers.filter(isUserBlacklisted).length,
-                icon: <Ban className="h-4 w-4 text-purple-400" />,
-                color: "purple",
-                glow: "purple",
+                icon: <Ban className="h-4 w-4 text-red-400" />,
+                color: "red",
+                glow: "red",
               },
             ].map((s) => (
               <GlowCard
                 key={s.label}
-                glowColor={s.glow as "blue" | "cyan" | "purple"}
+                glowColor={s.glow as "red" | "none"}
                 className="flex items-center gap-3 p-4"
               >
                 <div className={`p-2 rounded-lg bg-${s.color}-500/10`}>{s.icon}</div>
@@ -321,7 +321,7 @@ export default function AppUsersManager() {
 
           {/* Manual blacklist creation card */}
           {showManualBlacklist ? (
-            <GlowCard glowColor="purple" className="mb-6">
+            <GlowCard glowColor="red" className="mb-6">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-sm font-bold flex items-center gap-2 text-red-400">
                   <ShieldAlert className="h-4 w-4" /> Manually Blacklist by License Key
@@ -430,7 +430,7 @@ export default function AppUsersManager() {
           )}
 
           {/* Data Tables */}
-          <GlowCard glowColor={activeTab === "users" ? "purple" : "cyan"}>
+          <GlowCard glowColor={activeTab === "users" ? "red" : "none"}>
             {loading ? (
               <div className="flex items-center gap-2 text-xs text-slate-500 py-12 justify-center">
                 <RefreshCw className="h-3.5 w-3.5 animate-spin" /> Loading data...

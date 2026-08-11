@@ -135,7 +135,7 @@ export default function AppsManager() {
         </div>
 
         {/* Creation card */}
-        <GlowCard glowColor="blue" className="mb-10 max-w-2xl">
+        <GlowCard glowColor="red" className="mb-10 max-w-2xl">
           <h3 className="text-sm font-bold mb-5 flex items-center gap-2 text-white">
             <Plus className="h-4 w-4 text-blue-400" /> Initialize New Protection Node
           </h3>
@@ -167,8 +167,8 @@ export default function AppsManager() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 stagger-children">
             {apps.map((app, i) => {
               // Alternate glow colors based on index for a premium varied look
-              const colors: ("blue" | "purple" | "cyan")[] = ["purple", "blue", "cyan"];
-              const cardColor = colors[i % 3];
+              const colors: ("red" | "none")[] = ["red", "none"];
+              const cardColor = colors[i % 2];
               
               return (
                 <GlowCard key={app.id} glowColor={cardColor} className="flex flex-col group">

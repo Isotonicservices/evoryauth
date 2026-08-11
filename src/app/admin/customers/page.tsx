@@ -91,7 +91,7 @@ export default function CustomersAdminPage() {
           </div>
         </div>
 
-        <GlowCard glowColor="purple" className="mb-8 p-4">
+        <GlowCard glowColor="red" className="mb-8 p-4">
           <div className="relative">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
             <input
@@ -111,7 +111,7 @@ export default function CustomersAdminPage() {
             <div className="text-center text-slate-500 text-sm py-10">No users found.</div>
           ) : (
             users.map((u) => (
-              <GlowCard key={u.id} glowColor="blue" className="p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <GlowCard key={u.id} glowColor="red" className="p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-bold text-white text-lg">{u.username}</h3>
