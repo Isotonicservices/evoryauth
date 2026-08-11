@@ -1,63 +1,97 @@
 import json
 import hashlib
+import requests
 
 class HyperAuth:
-    def __init__(self, app_id: str, secret: str, version: str):
+    def __init__(self, app_id: str, secret: str, base_url: str = "https://www.hyperion.buzz/api/client"):
         self.app_id = app_id
         self.secret = secret
-        self.version = version
+        self.base_url = base_url
         self.session_id = None
         self.temp_key = None
         self.initialized = False
         self.license_info = {}
 
-    def _send_post_request(self, endpoint: str, data: dict) -> dict:
-        # Simulate network request
-        print(f"[SDK Python Debug] POST to {endpoint} with: {json.dumps(data)}")
-        return {"success": True, "payload": "mocked_payload_response"}
-
-    def init(self) -> bool:
-        response = self._send_post_request("/api/client/handshake", {"appId": self.app_id})
-        if response.get("success"):
-            self.session_id = "MOCK-SESSION-PY"
-            self.temp_key = "MOCK-KEY-PY"
-            self.initialized = True
-            return True
-        return False
-
-    def login(self, username: str, password: str, hwid: str = "MOCK_PYTHON_HWID") -> bool:
-        if not self.initialized:
-            raise Exception("SDK not initialized. Run init() first.")
+    def authenticate(self, license_key: str, hwid: str = None) -> tuple[bool, str]:
+        try:
+            response = requests.post(
+                f"{self.base_url}/authenticate",
+                json={
+                    "appId": self.app_id,
+                    "appSecret": self.secret,
+                    "licenseKey": license_key,
+                    "hwid": hwid
+                },
+                timeout=10
+            )
+            data = response.json()
             
-        payload = {"username": username, "password": password, "hwid": hwid}
-        request = {
-            "appId": self.app_id,
-            "payload": "encrypted_aes_payload"
-        }
-        response = self._send_post_request("/api/client/login", request)
-        if response.get("success"):
-            self.license_info = {"expiresAt": "Lifetime"}
-            return True
-        return False
+            if data.get("success"):
+                self.license_info = data.get("user", {})
+                return True, "License verified successfully!"
+            else:
+                return False, data.get("error", "Invalid license key")
+                
+        except requests.exceptions.RequestException as e:
+            return False, f"Connection error: {str(e)}"
+        except Exception as e:
+            return False, f"Authentication error: {str(e)}"
 
-    def register(self, username: str, password: str, license_key: str, hwid: str = "MOCK_PYTHON_HWID") -> bool:
-        if not self.initialized:
-            return False
-            
-        request = {
-            "appId": self.app_id,
-            "payload": "encrypted_aes_payload"
-        }
-        response = self._send_post_request("/api/client/register", request)
-        return response.get("success")
+    def register_user(self, username: str, password: str, license_key: str, hwid: str = None) -> tuple[bool, str]:
+        try:
+            response = requests.post(
+                f"{self.base_url}/register",
+                json={
+                    "appId": self.app_id,
+                    "payload": "encrypted_payload_placeholder"
+                },
+                timeout=10
+            )
+            data = response.json()
+            if data.get("success"):
+                return True, "User registered successfully!"
+            else:
+                return False, data.get("error", "Registration failed")
+                
+        except Exception as e:
+            return False, f"Registration error: {str(e)}"
 
-    def activate(self, license_key: str, hwid: str = "MOCK_PYTHON_HWID") -> bool:
-        if not self.initialized:
-            return False
-            
-        request = {
-            "appId": self.app_id,
-            "payload": "encrypted_aes_payload"
-        }
-        response = self._send_post_request("/api/client/activate", request)
-        return response.get("success")
+    def login_user(self, username: str, password: str, hwid: str = None) -> tuple[bool, str]:
+        try:
+            response = requests.post(
+                f"{self.base_url}/login",
+                json={
+                    "appId": self.app_id,
+                    "payload": "encrypted_payload_placeholder"
+                },
+                timeout=10
+            )
+            data = response.json()
+            if data.get("success"):
+                return True, "Login successful!"
+            else:
+                return False, data.get("error", "Login failed")
+                
+        except Exception as e:
+            return False, f"Login error: {str(e)}"
+
+    def activate(self, license_key: str, hwid: str = None) -> tuple[bool, str]:
+        try:
+            response = requests.post(
+                f"{self.base_url}/activate",
+                json={
+                    "appId": self.app_id,
+                    "payload": "encrypted_payload_placeholder"
+                },
+                timeout=10
+            )
+            data = response.json()
+            if data.get("success"):
+                return True, "License activated successfully!"
+            else:
+                return False, data.get("error", "Activation failed")
+                
+        except Exception as e:
+            return False, f"Activation error: {str(e)}"
+"
+
