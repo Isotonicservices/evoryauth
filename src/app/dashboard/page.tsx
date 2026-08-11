@@ -106,9 +106,24 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#030014] flex flex-col items-center justify-center text-red-400 font-mono text-xs">
-        <div className="h-12 w-12 rounded-full border-2 border-red-500 border-t-transparent animate-spin mb-4 shadow-[0_0_15px_rgba(239,68,68,0.5)]"></div>
-        Establishing secure uplink...
+      <div className="min-h-screen bg-[#030014] flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(239,68,68,0.1),transparent_50%)]"></div>
+        <div className="relative z- flex flex-col items-center gap-8">
+          <div className="relative">
+            <div className="h-20 w-20 rounded-full border-2 border-red-500/30 border-t-red-500 animate-spin shadow-[0_0_30px_rgba(239,68,68,0.3)]"></div>
+            <div className="absolute inset-0 h-20 w-20 rounded-full border-2 border-red-500/20 animate-pulse"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <ShieldCheck className="h-8 w-8 text-red-500" />
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-3">
+            <h2 className="text-xl font-bold font-outfit text-white tracking-wider">HYPER AUTH</h2>
+            <p className="text-sm text-slate-400 font-mono">Establishing secure uplink...</p>
+          </div>
+          <div className="w-48 h-1 bg-slate-800 rounded-full overflow-hidden">
+            <div className="h-full bg-gradient-to-r from-red-600 to-red-400 animate-[loading_2s_ease-in-out_infinite]"></div>
+          </div>
+        </div>
       </div>
     );
   }

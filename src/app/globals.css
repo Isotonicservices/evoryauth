@@ -525,3 +525,10 @@ nextjs-portal { display: none !important; opacity: 0 !important; visibility: hid
 /* Fix dropdown option colors */
 select option { background-color: #0a0a14 !important; color: white !important; }
 select { color-scheme: dark; }
+
+/* Loading animation */
+@keyframes loading {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
