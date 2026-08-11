@@ -5,25 +5,19 @@ import { motion } from "framer-motion";
 
 interface GlowCardProps {
   children: React.ReactNode;
-  glowColor?: "blue" | "purple" | "cyan" | "green" | "red" | "none";
+  glowColor?: "green" | "red" | "none";
   className?: string;
   withShimmer?: boolean;
 }
 
-export function GlowCard({ children, glowColor = "blue", className = "", withShimmer = false }: GlowCardProps) {
+export function GlowCard({ children, glowColor = "green", className = "", withShimmer = false }: GlowCardProps) {
   const shadowMap = {
-    blue: "rgba(59, 130, 246, 0.15)",
-    purple: "rgba(168, 85, 247, 0.15)",
-    cyan: "rgba(6, 182, 212, 0.15)",
     green: "rgba(34, 197, 94, 0.15)",
     red: "rgba(239, 68, 68, 0.15)",
     none: "transparent",
   };
 
   const glassClassMap = {
-    blue: "glass-blue",
-    purple: "glass-purple",
-    cyan: "glass-cyan",
     green: "glass-green",
     red: "glass-red",
     none: "glass-panel",
@@ -56,15 +50,9 @@ export function GlowCard({ children, glowColor = "blue", className = "", withShi
       {glowColor !== "none" && (
         <div
           className={`absolute top-0 left-0 right-0 h-[2px] opacity-70 bg-gradient-to-r ${
-            glowColor === "blue"
-              ? "from-blue-500 to-indigo-500"
-              : glowColor === "purple"
-              ? "from-purple-500 to-pink-500"
-              : glowColor === "cyan"
-              ? "from-cyan-500 to-emerald-500"
-              : glowColor === "red"
+            glowColor === "red"
               ? "from-red-500 to-red-600"
-              : "from-white to-white"}
+              : "from-white to-white"
           }`}
         />
       )}

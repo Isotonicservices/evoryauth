@@ -168,7 +168,7 @@ export default function FileCDN() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 border-b border-white/5 pb-6">
             <div>
               <h1 className="text-3xl font-extrabold font-outfit text-white tracking-tight flex items-center gap-3">
-                <div className="p-2.5 bg-cyan-500/10 rounded-xl border border-cyan-500/20 text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                <div className="p-2.5 bg-red-500/10 rounded-xl border border-red-500/20 text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
                   <Database className="h-6 w-6" />
                 </div>
                 CDN File Edge
@@ -181,14 +181,14 @@ export default function FileCDN() {
             <div className="flex items-center gap-3 bg-white/[0.02] p-2 rounded-xl border border-white/5 backdrop-blur-md">
               <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider ml-2">App Node:</span>
               <div className="relative">
-                <select value={selectedApp} onChange={e => setSelectedApp(e.target.value)} className="appearance-none bg-slate-900 border border-white/10 rounded-lg pl-4 pr-10 py-2.5 text-xs font-bold text-white focus:outline-none focus:border-cyan-500 hover:bg-slate-800 transition-colors">
+                <select value={selectedApp} onChange={e => setSelectedApp(e.target.value)} className="appearance-none bg-slate-900 border border-white/10 rounded-lg pl-4 pr-10 py-2.5 text-xs font-bold text-white focus:outline-none focus:border-red-500 hover:bg-slate-800 transition-colors">
                   {apps.map(a => <option key={a.id} value={a.id}>{a.name}</option>)}
                 </select>
                 <ChevronDown className="h-4 w-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               </div>
               <div className="h-8 w-[1px] bg-white/10 mx-1" />
               <button onClick={fetchFiles} className="p-2.5 rounded-lg bg-white/5 border border-transparent hover:border-white/20 text-slate-300 hover:text-white transition-all">
-                <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin text-cyan-400' : ''}`} />
+                <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin text-red-400' : ''}`} />
               </button>
             </div>
           </div>
@@ -196,9 +196,9 @@ export default function FileCDN() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Upload Zone */}
             <div className="lg:col-span-1">
-              <GlowCard glowColor="cyan" className="sticky top-8" withShimmer>
+              <GlowCard glowColor="red" className="sticky top-8" withShimmer>
                 <h3 className="text-sm font-bold mb-6 flex items-center gap-2 text-white">
-                  <Upload className="h-4 w-4 text-cyan-400" /> Push Payload
+                  <Upload className="h-4 w-4 text-red-400" /> Push Payload
                 </h3>
                 
                 <form onSubmit={handleUploadFile} className="flex flex-col gap-5">
@@ -208,15 +208,15 @@ export default function FileCDN() {
                     onDrop={handleDrop}
                     className={`relative overflow-hidden rounded-2xl border-2 border-dashed transition-all p-8 flex flex-col items-center justify-center text-center gap-4 ${
                       isDragOver 
-                        ? "border-cyan-500 bg-cyan-500/10 shadow-[0_0_30px_rgba(6,182,212,0.2)]" 
-                        : "border-white/10 bg-black/40 hover:border-cyan-500/50 hover:bg-white/[0.02]"
+                        ? "border-red-500 bg-red-500/10 shadow-[0_0_30px_rgba(239,68,68,0.2)]" 
+                        : "border-white/10 bg-black/40 hover:border-red-500/50 hover:bg-white/[0.02]"
                     }`}
                   >
-                    {isDragOver && <div className="absolute inset-0 bg-cyan-500/5 backdrop-blur-[2px]" />}
+                    {isDragOver && <div className="absolute inset-0 bg-red-500/5 backdrop-blur-[2px]" />}
                     
                     {filePayload ? (
                       <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="flex flex-col items-center gap-3 relative z-10">
-                        <div className="h-16 w-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-cyan-500/30">
+                        <div className="h-16 w-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30">
                           <FileCode className="h-8 w-8 text-white" />
                         </div>
                         <div>
@@ -281,7 +281,7 @@ export default function FileCDN() {
                       <Server className="h-4 w-4 text-slate-300" />
                     </div>
                     Distributed Edge Nodes
-                    <span className="px-2.5 py-0.5 bg-blue-500/10 border border-blue-500/30 rounded-full text-[10px] text-blue-400 font-mono shadow-[0_0_10px_rgba(59,130,246,0.2)]">
+                    <span className="px-2.5 py-0.5 bg-red-500/10 border border-red-500/30 rounded-full text-[10px] text-red-400 font-mono shadow-[0_0_10px_rgba(239,68,68,0.2)]">
                       {files.length} PAYLOADS
                     </span>
                   </h3>
@@ -290,8 +290,8 @@ export default function FileCDN() {
                 {loading ? (
                   <div className="flex-1 flex flex-col items-center justify-center py-20 text-slate-500 font-mono text-xs gap-4">
                     <div className="relative">
-                      <div className="h-10 w-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
-                      <div className="absolute inset-0 h-10 w-10 border-2 border-cyan-500/30 rounded-full"></div>
+                      <div className="h-10 w-10 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+                      <div className="absolute inset-0 h-10 w-10 border-2 border-red-500/30 rounded-full"></div>
                     </div>
                     Syncing edge servers...
                   </div>
@@ -321,8 +321,8 @@ export default function FileCDN() {
                             <tr key={file.id} className="border-b border-white/5 hover:bg-white/[0.02]">
                               <td className="py-4 px-6">
                                 <div className="flex items-center gap-4">
-                                  <div className="h-10 w-10 bg-cyan-500/10 rounded-xl border border-cyan-500/20 flex items-center justify-center shrink-0">
-                                    <HardDrive className="h-5 w-5 text-cyan-400" />
+                                  <div className="h-10 w-10 bg-red-500/10 rounded-xl border border-red-500/20 flex items-center justify-center shrink-0">
+                                    <HardDrive className="h-5 w-5 text-red-400" />
                                   </div>
                                   <div>
                                     <p className="font-bold text-white text-sm mb-0.5">{file.name}</p>
@@ -339,18 +339,18 @@ export default function FileCDN() {
                                   <div className="flex items-center gap-2">
                                     <span className="text-[9px] uppercase font-bold tracking-widest text-slate-500 w-12">UUID</span>
                                     <div 
-                                      className="flex items-center gap-1 bg-black/50 border border-white/5 px-2 py-0.5 rounded text-[10px] shadow-inner group cursor-pointer hover:bg-cyan-500/10 hover:border-cyan-500/30 transition-colors" 
+                                      className="flex items-center gap-1 bg-black/50 border border-white/5 px-2 py-0.5 rounded text-[10px] shadow-inner group cursor-pointer hover:bg-red-500/10 hover:border-red-500/30 transition-colors" 
                                       onClick={() => handleCopy(file.id, `${file.id}-uuid`)}
                                     >
-                                      <code className="font-mono text-cyan-300 break-all select-none">{file.id}</code>
-                                      {copiedId === `${file.id}-uuid` ? <CheckCircle2 className="h-3 w-3 text-emerald-400 shrink-0" /> : <Copy className="h-3 w-3 text-slate-500 group-hover:text-cyan-400 shrink-0" />}
+                                      <code className="font-mono text-red-300 break-all select-none">{file.id}</code>
+                                      {copiedId === `${file.id}-uuid` ? <CheckCircle2 className="h-3 w-3 text-red-400 shrink-0" /> : <Copy className="h-3 w-3 text-slate-500 group-hover:text-red-400 shrink-0" />}
                                     </div>
                                   </div>
                                   <div className="flex items-center gap-2">
                                     <span className="text-[9px] uppercase font-bold tracking-widest text-slate-500 w-12">C++</span>
-                                    <div className="flex items-center gap-1 bg-black/50 border border-white/5 px-2 py-0.5 rounded text-[10px] shadow-inner group cursor-pointer w-48 hover:bg-cyan-500/10 hover:border-cyan-500/30 transition-colors" onClick={() => handleCopy(cppSnippet, `${file.id}-cpp`)}>
-                                      <code className="font-mono text-emerald-400 truncate flex-1 select-none">{cppSnippet}</code>
-                                      {copiedId === `${file.id}-cpp` ? <CheckCircle2 className="h-3 w-3 text-emerald-400 shrink-0" /> : <Copy className="h-3 w-3 text-slate-500 group-hover:text-cyan-400 shrink-0" />}
+                                    <div className="flex items-center gap-1 bg-black/50 border border-white/5 px-2 py-0.5 rounded text-[10px] shadow-inner group cursor-pointer w-48 hover:bg-red-500/10 hover:border-red-500/30 transition-colors" onClick={() => handleCopy(cppSnippet, `${file.id}-cpp`)}>
+                                      <code className="font-mono text-red-300 truncate flex-1 select-none">{cppSnippet}</code>
+                                      {copiedId === `${file.id}-cpp` ? <CheckCircle2 className="h-3 w-3 text-red-400 shrink-0" /> : <Copy className="h-3 w-3 text-slate-500 group-hover:text-red-400 shrink-0" />}
                                     </div>
                                   </div>
                                 </div>
@@ -359,7 +359,7 @@ export default function FileCDN() {
                               <td className="px-4">
                                 <div className="space-y-1.5">
                                   <div className="flex items-center gap-2">
-                                    <ArrowUpCircle className="h-3 w-3 text-emerald-400" />
+                                    <ArrowUpCircle className="h-3 w-3 text-red-400" />
                                     <span className="font-bold text-white">{file.downloads.toLocaleString()} <span className="text-slate-500 font-normal">pulls</span></span>
                                   </div>
                                   <div className="flex items-center gap-2 text-slate-500 text-[10px]">
@@ -371,7 +371,7 @@ export default function FileCDN() {
 
                               <td className="px-6 text-right">
                                 <div className="flex items-center justify-end gap-2">
-                                  <label className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 hover:bg-blue-500/20 transition-all hover:scale-105 cursor-pointer flex items-center justify-center" title="Push Update">
+                                  <label className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-all hover:scale-105 cursor-pointer flex items-center justify-center" title="Push Update">
                                     {replacingId === file.id ? <RefreshCw className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
                                     <input type="file" className="hidden" disabled={replacingId !== null} onChange={async (e) => { const selected = e.target.files?.[0]; if (selected) await handleReplaceFile(file.id, selected, file.version); }} />
                                   </label>
