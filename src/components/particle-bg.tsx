@@ -32,7 +32,7 @@ export function ParticleBg() {
 
     // Generate Particles
     const particleCount = 60;
-    const colors = ["rgba(59, 130, 246, 0.4)", "rgba(168, 85, 247, 0.4)", "rgba(6, 182, 212, 0.3)"];
+    const colors = ["rgba(239, 68, 68, 0.4)", "rgba(255, 255, 255, 0.3)", "rgba(220, 38, 38, 0.3)"];
     
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -70,7 +70,7 @@ export function ParticleBg() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 - dist / 120 * 0.15})`;
+            ctx.strokeStyle = `rgba(239, 68, 68, ${0.15 - dist / 120 * 0.15})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -92,7 +92,7 @@ export function ParticleBg() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ background: "radial-gradient(circle at center, #0a0518 0%, #020106 100%)" }}
+      style={{ background: "radial-gradient(circle at center, #1a0505 0%, #020106 100%)" }}
     />
   );
 }
