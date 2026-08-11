@@ -1,44 +1,163 @@
 local HyperAuth = {}
 HyperAuth.__index = HyperAuth
 
-function HyperAuth.new(appId, secret, version)
+function HyperAuth.new(appId, secret, baseUrl)
     local self = setmetatable({}, HyperAuth)
     self.appId = appId
     self.secret = secret
-    self.version = version
+    self.baseUrl = baseUrl or "https://www.hyperion.buzz/api/client"
     self.sessionId = nil
     self.tempKey = nil
     self.initialized = false
+    self.licenseInfo = {}
     return self
 end
 
-function self_sendPostRequest(endpoint, data)
-    print("[SDK Lua Debug] POST to " .. endpoint .. " with: " .. data)
-    return "{\"success\":true,\"payload\":\"mocked_response\"}"
+function HyperAuth:authenticate(licenseKey, hwid)
+    local http = require("socket.http")
+    local ltn12 = require("ltn12")
+    local json = require("dkjson")
+    
+    local requestBody = json.encode({
+        appId = self.appId,
+        appSecret = self.secret,
+        licenseKey = licenseKey,
+        hwid = hwid
+    })
+    
+    local response_body = {}
+    local res, code, response_headers, status = http.request{
+        url = self.baseUrl .. "/authenticate",
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = #requestBody
+        },
+        source = ltn12.source.string(requestBody),
+        sink = ltn12.sink.table(response_body)
+    }
+    
+    if code == 200 then
+        local response_text = table.concat(response_body)
+        local data, pos, err = json.decode(response_text, 1, nil)
+        
+        if data and data.success then
+            self.licenseInfo = data.user or {}
+            return true, "License verified successfully!"
+        else
+            return false, data and data.error or "Invalid license key"
+        end
+    else
+        return false, "Connection error: " .. (code or "unknown")
+    end
 end
 
-function HyperAuth:init()
-    local payload = "{\"appId\":\"" .. self.appId .. "\"}"
-    local response = self_sendPostRequest("/api/client/handshake", payload)
+function HyperAuth:registerUser(username, password, licenseKey, hwid)
+    local http = require("socket.http")
+    local ltn12 = require("ltn12")
+    local json = require("dkjson")
     
-    if response:find("\"success\":true") then
-        self.sessionId = "MOCK-SESSION-LUA"
-        self.tempKey = "MOCK-KEY-LUA"
-        self.initialized = true
-        return true
+    local requestBody = json.encode({
+        appId = self.appId,
+        payload = "encrypted_payload_placeholder"
+    })
+    
+    local response_body = {}
+    local res, code, response_headers, status = http.request{
+        url = self.baseUrl .. "/register",
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = #requestBody
+        },
+        source = ltn12.source.string(requestBody),
+        sink = ltn12.sink.table(response_body)
+    }
+    
+    if code == 200 then
+        local response_text = table.concat(response_body)
+        local data, pos, err = json.decode(response_text, 1, nil)
+        
+        if data and data.success then
+            return true, "User registered successfully!"
+        else
+            return false, data and data.error or "Registration failed"
+        end
+    else
+        return false, "Connection error: " .. (code or "unknown")
     end
-    return false
 end
 
-function HyperAuth:login(username, password, hwid)
-    if not self.initialized then
-        error("SDK is not initialized. Run init() first.")
+function HyperAuth:loginUser(username, password, hwid)
+    local http = require("socket.http")
+    local ltn12 = require("ltn12")
+    local json = require("dkjson")
+    
+    local requestBody = json.encode({
+        appId = self.appId,
+        payload = "encrypted_payload_placeholder"
+    })
+    
+    local response_body = {}
+    local res, code, response_headers, status = http.request{
+        url = self.baseUrl .. "/login",
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = #requestBody
+        },
+        source = ltn12.source.string(requestBody),
+        sink = ltn12.sink.table(response_body)
+    }
+    
+    if code == 200 then
+        local response_text = table.concat(response_body)
+        local data, pos, err = json.decode(response_text, 1, nil)
+        
+        if data and data.success then
+            return true, "Login successful!"
+        else
+            return false, data and data.error or "Login failed"
+        end
+    else
+        return false, "Connection error: " .. (code or "unknown")
     end
+end
+
+function HyperAuth:activate(licenseKey, hwid)
+    local http = require("socket.http")
+    local ltn12 = require("ltn12")
+    local json = require("dkjson")
     
-    local payload = "{\"appId\":\"" .. self.appId .. "\",\"payload\":\"encrypted_aes_payload\"}"
-    local response = self_sendPostRequest("/api/client/login", payload)
+    local requestBody = json.encode({
+        appId = self.appId,
+        payload = "encrypted_payload_placeholder"
+    })
     
-    return response:find("\"success\":true") ~= nil
+    local response_body = {}
+    local res, code, response_headers, status = http.request{
+        url = self.baseUrl .. "/activate",
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = #requestBody
+        },
+        source = ltn12.source.string(requestBody),
+        sink = ltn12.sink.table(response_body)
+    }
+    
+    if code == 200 then
+        local response_text = table.concat(response_body)
+        local data, pos, err = json.decode(response_text, 1, nil)
+        
+        if data and data.success then
+            return true, "License activated successfully!"
+        else
+            return false, data and data.error or "Activation failed"
+        end
+    else
+        return false, "Connection error: " .. (code or "unknown")
+    end
 end
 
 return HyperAuth
