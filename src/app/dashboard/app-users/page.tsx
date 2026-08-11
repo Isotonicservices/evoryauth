@@ -253,7 +253,7 @@ export default function AppUsersManager() {
                 <select
                   value={selectedApp}
                   onChange={(e) => setSelectedApp(e.target.value)}
-                  className="appearance-none bg-slate-900 border border-white/10 rounded-lg pl-3 pr-8 py-2 text-xs font-semibold focus:outline-none focus:border-purple-500"
+                  className="appearance-none bg-slate-900 border border-white/10 rounded-lg pl-3 pr-8 py-2 text-xs font-semibold focus:outline-none focus:border-red-500"
                 >
                   {apps.map((a) => (
                     <option key={a.id} value={a.id}>
@@ -387,7 +387,7 @@ export default function AppUsersManager() {
                   onClick={() => setActiveTab("users")}
                   className={`px-4 py-2 text-xs font-semibold border-b-2 transition-all ${
                     activeTab === "users"
-                      ? "border-purple-500 text-purple-400"
+                      ? "border-red-500 text-red-400"
                       : "border-transparent text-slate-500 hover:text-white"
                   }`}
                 >
@@ -424,7 +424,7 @@ export default function AppUsersManager() {
                 placeholder="Search app users by username, HWID, IP or license key..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full bg-slate-900/60 border border-white/10 rounded-xl pl-9 pr-4 py-2.5 text-xs focus:outline-none focus:border-purple-500/50 placeholder-slate-600"
+                className="w-full bg-slate-900/60 border border-white/10 rounded-xl pl-9 pr-4 py-2.5 text-xs focus:outline-none focus:border-red-500/50 placeholder-slate-600"
               />
             </div>
           )}
@@ -462,7 +462,7 @@ export default function AppUsersManager() {
                           {/* Username */}
                           <td className="py-3 pr-4">
                             <div className="flex items-center gap-2">
-                              <div className="h-7 w-7 rounded-full bg-purple-900/30 border border-purple-500/20 flex items-center justify-center text-[10px] font-bold shrink-0 text-purple-300">
+                              <div className="h-7 w-7 rounded-full bg-red-900/30 border border-red-500/20 flex items-center justify-center text-[10px] font-bold shrink-0 text-red-300">
                                 {user.username[0].toUpperCase()}
                               </div>
                               <div>
@@ -493,7 +493,7 @@ export default function AppUsersManager() {
                                 </button>
                               </div>
                               {user.license.label && (
-                                <span className="text-[9px] text-purple-400">
+                                <span className="text-[9px] text-red-400">
                                   Label: {user.license.label}
                                 </span>
                               )}

@@ -146,11 +146,11 @@ export default function AdminPanel() {
                             <select
                               value={u.plan}
                               onChange={(e) => handleChangePlan(u.id, e.target.value)}
-                              className="bg-slate-900 border border-white/10 rounded-lg px-2 py-1 text-[10px] focus:outline-none font-bold text-blue-400"
+                              className="bg-slate-900 border border-white/10 rounded-lg px-2 py-1 text-[10px] focus:outline-none font-bold text-red-400"
                             >
-                              <option value="FREE">FREE</option>
-                              <option value="BASIC">BASIC</option>
                               <option value="PRO">PRO</option>
+                              <option value="BUSINESS">BUSINESS</option>
+                              <option value="ENTERPRISE">ENTERPRISE</option>
                             </select>
                           </td>
                           <td>
@@ -194,7 +194,7 @@ export default function AdminPanel() {
                   {logs.map((log) => (
                     <div key={log.id} className="border-b border-white/5 pb-2 text-[10px]">
                       <div className="flex justify-between text-slate-400 mb-1">
-                        <span className="font-semibold text-blue-400">{log.action}</span>
+                        <span className="font-semibold text-red-400">{log.action}</span>
                         <span>{new Date(log.createdAt).toLocaleTimeString()}</span>
                       </div>
                       <p className="text-slate-300 mb-1">{log.message}</p>
