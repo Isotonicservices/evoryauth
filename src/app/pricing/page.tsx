@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { ParticleBg } from "@/components/particle-bg";
 import { Navigation } from "@/components/navigation";
 import { GlowCard } from "@/components/glow-card";
@@ -25,38 +26,6 @@ export default function Pricing() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Free Plan */}
-          <GlowCard glowColor="red" className="p-8 relative">
-            <div className="mb-6">
-              <h3 className="text-xl font-bold font-outfit mb-2">Free</h3>
-              <div className="flex items-baseline gap-1">
-                <span className="text-4xl font-extrabold">$0</span>
-                <span className="text-slate-400">/month</span>
-              </div>
-            </div>
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center gap-3 text-sm">
-                <Check className="h-5 w-5 text-red-400 shrink-0" />
-                <span>Up to 5 Applications</span>
-              </li>
-              <li className="flex items-center gap-3 text-sm">
-                <Check className="h-5 w-5 text-red-400 shrink-0" />
-                <span>100 License Keys</span>
-              </li>
-              <li className="flex items-center gap-3 text-sm">
-                <Check className="h-5 w-5 text-red-400 shrink-0" />
-                <span>Basic HWID Lock</span>
-              </li>
-              <li className="flex items-center gap-3 text-sm">
-                <Check className="h-5 w-5 text-red-400 shrink-0" />
-                <span>Community Support</span>
-              </li>
-            </ul>
-            <button className="w-full py-3 rounded-xl border border-red-500/30 text-red-400 font-semibold hover:bg-red-500/10 transition-all">
-              Get Started
-            </button>
-          </GlowCard>
-
           {/* Pro Plan */}
           <GlowCard glowColor="red" className="p-8 relative border-red-500/50">
             <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl">
@@ -65,7 +34,45 @@ export default function Pricing() {
             <div className="mb-6">
               <h3 className="text-xl font-bold font-outfit mb-2">Pro</h3>
               <div className="flex items-baseline gap-1">
-                <span className="text-4xl font-extrabold">$29</span>
+                <span className="text-4xl font-extrabold">$10</span>
+                <span className="text-slate-400">/month</span>
+              </div>
+            </div>
+            <ul className="space-y-4 mb-8">
+              <li className="flex items-center gap-3 text-sm">
+                <Check className="h-5 w-5 text-red-400 shrink-0" />
+                <span>Up to 10 Applications</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm">
+                <Check className="h-5 w-5 text-red-400 shrink-0" />
+                <span>Up to 1000 License Keys</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm">
+                <Check className="h-5 w-5 text-red-400 shrink-0" />
+                <span>Advanced HWID Lock</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm">
+                <Check className="h-5 w-5 text-red-400 shrink-0" />
+                <span>Priority Support</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm">
+                <Check className="h-5 w-5 text-red-400 shrink-0" />
+                <span>API Access</span>
+              </li>
+            </ul>
+            <Link href="/register">
+              <button className="w-full py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-semibold transition-all shadow-[0_0_20px_rgba(239,68,68,0.3)]">
+                Get Started
+              </button>
+            </Link>
+          </GlowCard>
+
+          {/* Business Plan */}
+          <GlowCard glowColor="red" className="p-8 relative">
+            <div className="mb-6">
+              <h3 className="text-xl font-bold font-outfit mb-2">Business</h3>
+              <div className="flex items-baseline gap-1">
+                <span className="text-4xl font-extrabold">$20</span>
                 <span className="text-slate-400">/month</span>
               </div>
             </div>
@@ -91,9 +98,11 @@ export default function Pricing() {
                 <span>API Access</span>
               </li>
             </ul>
-            <button className="w-full py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-semibold transition-all shadow-[0_0_20px_rgba(239,68,68,0.3)]">
-              Start Free Trial
-            </button>
+            <Link href="/register">
+              <button className="w-full py-3 rounded-xl border border-red-500/30 text-red-400 font-semibold hover:bg-red-500/10 transition-all">
+                Get Started
+              </button>
+            </Link>
           </GlowCard>
 
           {/* Enterprise Plan */}
@@ -104,22 +113,22 @@ export default function Pricing() {
                 <Crown className="h-5 w-5 text-red-400" />
               </h3>
               <div className="flex items-baseline gap-1">
-                <span className="text-4xl font-extrabold">$99</span>
+                <span className="text-4xl font-extrabold">$50</span>
                 <span className="text-slate-400">/month</span>
               </div>
             </div>
             <ul className="space-y-4 mb-8">
               <li className="flex items-center gap-3 text-sm">
                 <Check className="h-5 w-5 text-red-400 shrink-0" />
-                <span>Everything in Pro</span>
+                <span>Everything in Business</span>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Check className="h-5 w-5 text-red-400 shrink-0" />
-                <span>Custom CDN</span>
+                <span>Custom CDN - Fast file delivery worldwide</span>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Check className="h-5 w-5 text-red-400 shrink-0" />
-                <span>White Label</span>
+                <span>White Label - Remove Hyper Auth branding</span>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Check className="h-5 w-5 text-red-400 shrink-0" />
@@ -127,12 +136,14 @@ export default function Pricing() {
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Check className="h-5 w-5 text-red-400 shrink-0" />
-                <span>SLA Guarantee</span>
+                <span>SLA Guarantee - 99.9% uptime commitment</span>
               </li>
             </ul>
-            <button className="w-full py-3 rounded-xl border border-red-500/30 text-red-400 font-semibold hover:bg-red-500/10 transition-all">
-              Contact Sales
-            </button>
+            <a href="mailto:sales@hyperauth.com">
+              <button className="w-full py-3 rounded-xl border border-red-500/30 text-red-400 font-semibold hover:bg-red-500/10 transition-all">
+                Contact Sales
+              </button>
+            </a>
           </GlowCard>
         </div>
 
