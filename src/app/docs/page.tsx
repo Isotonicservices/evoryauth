@@ -5,11 +5,12 @@ import { useRouter } from "next/navigation";
 import { ParticleBg } from "@/components/particle-bg";
 import { Navigation } from "@/components/navigation";
 import { GlowCard } from "@/components/glow-card";
-import { Terminal, Code, Server, BookOpen, Layers, Lock } from "lucide-react";
+import { Terminal, Code, Server, BookOpen, Layers, Lock, Crown } from "lucide-react";
 
 export default function Documentation() {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function Documentation() {
         if (res.ok) {
           const data = await res.json();
           setIsAuthenticated(data.authenticated);
+          setIsPaid(data.isPaid || false);
         }
       } catch (error) {
         console.error("Auth check failed:", error);
@@ -61,6 +63,30 @@ export default function Documentation() {
               className="w-full py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-semibold transition-all shadow-[0_0_20px_rgba(239,68,68,0.3)]"
             >
               Login to Access
+            </button>
+          </GlowCard>
+        </div>
+      </main>
+    );
+  }
+
+  if (!isPaid) {
+    return (
+      <main className="relative min-h-screen text-slate-100">
+        <ParticleBg />
+        <Navigation />
+        <div className="flex items-center justify-center h-screen px-6">
+          <GlowCard glowColor="red" className="max-w-md w-full p-8 text-center">
+            <Crown className="h-16 w-16 text-red-400 mx-auto mb-6" />
+            <h2 className="text-2xl font-bold font-outfit mb-4">Premium Feature</h2>
+            <p className="text-slate-400 mb-6">
+              Documentation and SDK access is available to paid subscribers only. Upgrade your plan to access integration guides, API references, and SDK downloads.
+            </p>
+            <button
+              onClick={() => router.push("/pricing")}
+              className="w-full py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-semibold transition-all shadow-[0_0_20px_rgba(239,68,68,0.3)]"
+            >
+              View Pricing Plans
             </button>
           </GlowCard>
         </div>
