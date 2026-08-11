@@ -16,7 +16,10 @@ export const metadata: Metadata = {
   title: "Hyper Auth - Premium Licensing & Security SaaS",
   description: "Next-generation secure software licensing platform with automated hardware locks, encrypted handshakes, and developer APIs.",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
   },
