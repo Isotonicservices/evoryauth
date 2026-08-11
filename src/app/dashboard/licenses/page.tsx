@@ -242,7 +242,7 @@ export default function LicensesManager() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 border-b border-white/5 pb-6">
             <div>
               <h1 className="text-3xl font-extrabold font-outfit text-white tracking-tight flex items-center gap-3">
-                <div className="p-2.5 bg-blue-500/10 rounded-xl border border-blue-500/20 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                <div className="p-2.5 bg-red-500/10 rounded-xl border border-red-500/20 text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
                   <Key className="h-6 w-6" />
                 </div>
                 License Manager
@@ -255,17 +255,17 @@ export default function LicensesManager() {
             <div className="flex items-center gap-3 bg-white/[0.02] p-2 rounded-xl border border-white/5 backdrop-blur-md">
               <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider ml-2">App Node:</span>
               <div className="relative">
-                <select value={selectedApp} onChange={e => setSelectedApp(e.target.value)} className="appearance-none bg-slate-900 border border-white/10 rounded-lg pl-4 pr-10 py-2.5 text-xs font-bold text-white focus:outline-none focus:border-blue-500 hover:bg-slate-800 transition-colors">
+                <select value={selectedApp} onChange={e => setSelectedApp(e.target.value)} className="appearance-none bg-slate-900 border border-white/10 rounded-lg pl-4 pr-10 py-2.5 text-xs font-bold text-white focus:outline-none focus:border-red-500 hover:bg-slate-800 transition-colors">
                   {apps.map(a => <option key={a.id} value={a.id}>{a.name}</option>)}
                 </select>
                 <ChevronDown className="h-4 w-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               </div>
               <div className="h-8 w-[1px] bg-white/10 mx-1" />
-              <Link href={`/dashboard/app-users${selectedApp ? `?appId=${selectedApp}` : ""}`} className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-transparent bg-white/5 text-xs font-bold text-slate-300 hover:text-purple-300 hover:border-purple-500/30 hover:bg-purple-500/10 transition-all">
+              <Link href={`/dashboard/app-users${selectedApp ? `?appId=${selectedApp}` : ""}`} className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-transparent bg-white/5 text-xs font-bold text-slate-300 hover:text-red-300 hover:border-red-500/30 hover:bg-red-500/10 transition-all">
                 <Users className="h-4 w-4" /> User Matrix
               </Link>
               <button onClick={fetchLicenses} className="p-2.5 rounded-lg bg-white/5 border border-transparent hover:border-white/20 text-slate-300 hover:text-white transition-all">
-                <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin text-blue-400' : ''}`} />
+                <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin text-red-400' : ''}`} />
               </button>
             </div>
           </div>
@@ -273,8 +273,8 @@ export default function LicensesManager() {
           {/* Generate Card */}
           <GlowCard glowColor="red" className="mb-8" withShimmer>
             <h3 className="text-sm font-bold mb-6 flex items-center gap-2 text-white">
-              <div className="bg-blue-500/20 p-1 rounded">
-                <Plus className="h-4 w-4 text-blue-400" />
+              <div className="bg-red-500/20 p-1 rounded">
+                <Plus className="h-4 w-4 text-red-400" />
               </div>
               Generate Access Tokens
             </h3>
@@ -315,24 +315,24 @@ export default function LicensesManager() {
                       </button>
                     </div>
                     <div className="relative">
-                      <input type="text" value={keyPattern} onChange={e => setKeyPattern(e.target.value)} placeholder="e.g. VIP-****-****-****" className="input-premium w-full font-mono placeholder-slate-700 bg-black/60 focus:bg-blue-500/5" />
+                      <input type="text" value={keyPattern} onChange={e => setKeyPattern(e.target.value)} placeholder="e.g. VIP-****-****-****" className="input-premium w-full font-mono placeholder-slate-700 bg-black/60 focus:bg-red-500/5" />
                       {keyPattern && <button type="button" onClick={() => setKeyPattern("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-red-400 bg-black rounded p-1"><X className="h-3 w-3" /></button>}
                     </div>
                   </div>
                   
-                  <div className="flex-1 w-full bg-blue-500/5 border border-blue-500/10 rounded-lg p-4 h-full min-h-[66px] flex flex-col justify-center">
-                    <span className="text-[9px] text-blue-400/70 uppercase font-bold tracking-widest mb-1 flex items-center gap-1.5"><Eye className="h-3 w-3" /> Live Output Preview</span>
-                    <span className="font-mono text-sm font-bold text-blue-300 tracking-wider">
+                  <div className="flex-1 w-full bg-red-500/5 border border-red-500/10 rounded-lg p-4 h-full min-h-[66px] flex flex-col justify-center">
+                    <span className="text-[9px] text-red-400/70 uppercase font-bold tracking-widest mb-1 flex items-center gap-1.5"><Eye className="h-3 w-3" /> Live Output Preview</span>
+                    <span className="font-mono text-sm font-bold text-red-300 tracking-wider">
                       {keyPattern ? previewPattern : <span className="opacity-50">SECURE-XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX</span>}
                     </span>
                   </div>
                 </div>
                 
                 {showPatternHelp && (
-                  <div className="mt-4 p-4 bg-slate-900 border border-white/10 rounded-lg text-xs text-slate-400 space-y-2 animate-fadeIn border-l-2 border-l-blue-500">
-                    <p className="flex items-start gap-2"><span className="text-blue-400 font-bold">•</span> Use <code className="bg-black text-blue-300 px-1.5 py-0.5 rounded font-mono">*</code> as a placeholder for a randomized uppercase hex character.</p>
-                    <p className="flex items-start gap-2"><span className="text-blue-400 font-bold">•</span> Example: <code className="bg-black text-blue-300 px-1.5 py-0.5 rounded font-mono">SPOOFER-****-****-****</code> generates <code className="bg-black text-slate-300 px-1.5 py-0.5 rounded font-mono">SPOOFER-A3F2-7B1D-C9E8</code></p>
-                    <p className="flex items-start gap-2"><span className="text-blue-400 font-bold">•</span> Leave empty to use the standard high-entropy 256-bit algorithm format.</p>
+                  <div className="mt-4 p-4 bg-slate-900 border border-white/10 rounded-lg text-xs text-slate-400 space-y-2 animate-fadeIn border-l-2 border-l-red-500">
+                    <p className="flex items-start gap-2"><span className="text-red-400 font-bold">•</span> Use <code className="bg-black text-red-300 px-1.5 py-0.5 rounded font-mono">*</code> as a placeholder for a randomized uppercase hex character.</p>
+                    <p className="flex items-start gap-2"><span className="text-red-400 font-bold">•</span> Example: <code className="bg-black text-red-300 px-1.5 py-0.5 rounded font-mono">SPOOFER-****-****-****</code> generates <code className="bg-black text-slate-300 px-1.5 py-0.5 rounded font-mono">SPOOFER-A3F2-7B1D-C9E8</code></p>
+                    <p className="flex items-start gap-2"><span className="text-red-400 font-bold">•</span> Leave empty to use the standard high-entropy 256-bit algorithm format.</p>
                   </div>
                 )}
               </div>
@@ -363,11 +363,11 @@ export default function LicensesManager() {
           <GlowCard glowColor="red" className="p-0 overflow-hidden">
             <div className="p-6 border-b border-white/5 flex items-center justify-between flex-wrap gap-4 bg-white/[0.01]">
               <h3 className="text-sm font-bold flex items-center gap-3 text-white">
-                <div className="bg-purple-500/20 p-1.5 rounded-lg border border-purple-500/30">
-                  <Shield className="h-4 w-4 text-purple-400" />
+                <div className="bg-red-500/20 p-1.5 rounded-lg border border-red-500/30">
+                  <Shield className="h-4 w-4 text-red-400" />
                 </div>
                 Active Token Registry
-                <span className="px-2.5 py-0.5 bg-purple-500/10 border border-purple-500/30 rounded-full text-[10px] text-purple-400 font-mono shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                <span className="px-2.5 py-0.5 bg-red-500/10 border border-red-500/30 rounded-full text-[10px] text-red-400 font-mono shadow-[0_0_10px_rgba(239,68,68,0.2)]">
                   {licenses.length} RECORDS
                 </span>
               </h3>
@@ -381,8 +381,8 @@ export default function LicensesManager() {
             {loading ? (
               <div className="flex flex-col items-center justify-center py-20 text-slate-500 font-mono text-xs gap-4">
                 <div className="relative">
-                  <div className="h-10 w-10 border-2 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
-                  <div className="absolute inset-0 h-10 w-10 border-2 border-purple-500/30 rounded-full"></div>
+                  <div className="h-10 w-10 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+                  <div className="absolute inset-0 h-10 w-10 border-2 border-red-500/30 rounded-full"></div>
                 </div>
                 Fetching cryptographic records...
               </div>
@@ -405,13 +405,13 @@ export default function LicensesManager() {
                         <td className="py-4 px-6">
                           <div className="flex items-center gap-3">
                             <span className="font-mono font-bold text-white tracking-wider bg-black/50 px-2 py-1 rounded border border-white/5 shadow-inner">{lic.key}</span>
-                            <button onClick={() => handleCopyKey(lic)} className={`shrink-0 p-1.5 rounded-md transition-colors ${copiedId === lic.id ? "bg-emerald-500/20 text-emerald-400" : "bg-white/5 text-slate-500 hover:text-blue-400 hover:bg-blue-500/10"}`}>
+                            <button onClick={() => handleCopyKey(lic)} className={`shrink-0 p-1.5 rounded-md transition-colors ${copiedId === lic.id ? "bg-red-500/20 text-red-400" : "bg-white/5 text-slate-500 hover:text-red-400 hover:bg-red-500/10"}`}>
                               {copiedId === lic.id ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
                             </button>
                           </div>
                         </td>
                         <td className="px-4">
-                          {lic.label ? <span className="px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 rounded font-bold text-[9px] uppercase tracking-wider">{lic.label}</span> : <span className="text-slate-600 text-xs opacity-50">—</span>}
+                          {lic.label ? <span className="px-2.5 py-1 bg-red-500/10 border border-red-500/20 text-red-300 rounded font-bold text-[9px] uppercase tracking-wider">{lic.label}</span> : <span className="text-slate-600 text-xs opacity-50">—</span>}
                         </td>
                         <td className="px-4">
                           <div className="flex flex-col gap-1">

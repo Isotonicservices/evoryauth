@@ -123,7 +123,7 @@ export default function AppsManager() {
         <div className="flex justify-between items-end mb-10 border-b border-white/5 pb-6">
           <div>
             <h1 className="text-3xl font-extrabold font-outfit text-white tracking-tight flex items-center gap-3">
-              <div className="p-2.5 bg-blue-500/10 rounded-xl border border-blue-500/20 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+              <div className="p-2.5 bg-red-500/10 rounded-xl border border-red-500/20 text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
                 <LayoutGrid className="h-6 w-6" />
               </div>
               Applications Registry
@@ -137,7 +137,7 @@ export default function AppsManager() {
         {/* Creation card */}
         <GlowCard glowColor="red" className="mb-10 max-w-2xl">
           <h3 className="text-sm font-bold mb-5 flex items-center gap-2 text-white">
-            <Plus className="h-4 w-4 text-blue-400" /> Initialize New Protection Node
+            <Plus className="h-4 w-4 text-red-400" /> Initialize New Protection Node
           </h3>
           <form onSubmit={handleCreateApp} className="flex gap-4">
             <input
@@ -159,8 +159,8 @@ export default function AppsManager() {
 
         {/* Applications lists */}
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-20 text-blue-400 font-mono text-xs">
-            <div className="h-8 w-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mb-4 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+          <div className="flex flex-col items-center justify-center py-20 text-red-400 font-mono text-xs">
+            <div className="h-8 w-8 border-2 border-red-500 border-t-transparent rounded-full animate-spin mb-4 shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
             Querying active nodes...
           </div>
         ) : (
@@ -219,7 +219,7 @@ export default function AppsManager() {
                           </button>
                           <button
                             onClick={() => handleResetSecret(app.id)}
-                            className="p-1.5 rounded text-slate-500 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"
+                            className="p-1.5 rounded text-slate-500 hover:text-red-400 hover:bg-red-500/10 transition-colors"
                             title="Regenerate Secret"
                           >
                             <KeyRound className="h-3.5 w-3.5" />
@@ -239,7 +239,7 @@ export default function AppsManager() {
                         className="toggle-switch"
                       />
                       <div className="flex flex-col">
-                        <span className="font-bold text-xs text-white group-hover:text-blue-200 transition-colors">HWID Binding</span>
+                        <span className="font-bold text-xs text-white group-hover:text-red-200 transition-colors">HWID Binding</span>
                         <span className="text-[9px] text-slate-500 font-medium">Lock to single device</span>
                       </div>
                     </label>
@@ -252,7 +252,7 @@ export default function AppsManager() {
                         className="toggle-switch toggle-switch-purple"
                       />
                       <div className="flex flex-col">
-                        <span className="font-bold text-xs text-white group-hover:text-purple-200 transition-colors">AES Handshake</span>
+                        <span className="font-bold text-xs text-white group-hover:text-red-200 transition-colors">AES Handshake</span>
                         <span className="text-[9px] text-slate-500 font-medium">Encrypt all packets</span>
                       </div>
                     </label>

@@ -29,7 +29,7 @@ export default function Contact() {
         <div className="text-center mb-12">
           <h1 className="font-outfit text-4xl md:text-5xl font-extrabold mb-4">
             Get in Touch with <br />
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent text-neon-blue">
+            <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent text-neon-red">
               Security Advisors
             </span>
           </h1>
@@ -48,7 +48,7 @@ export default function Contact() {
               </div>
               <button
                 onClick={() => setSubmitted(false)}
-                className="mt-4 px-4 py-2 bg-slate-900 border border-white/10 hover:border-purple-500 rounded-lg text-xs transition-colors text-slate-300"
+                className="mt-4 px-4 py-2 bg-slate-900 border border-white/10 hover:border-red-500 rounded-lg text-xs transition-colors text-slate-300"
               >
                 Submit another ticket
               </button>
@@ -63,7 +63,7 @@ export default function Contact() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   placeholder="name@company.com"
-                  className="bg-slate-900/60 border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-purple-500 text-white"
+                  className="bg-slate-900/60 border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-red-500 text-white"
                 />
               </div>
 
@@ -75,7 +75,7 @@ export default function Contact() {
                   onChange={(e) => setSubject(e.target.value)}
                   required
                   placeholder="e.g. License API request error"
-                  className="bg-slate-900/60 border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-purple-500 text-white"
+                  className="bg-slate-900/60 border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-red-500 text-white"
                 />
               </div>
 
@@ -87,13 +87,13 @@ export default function Contact() {
                   onChange={(e) => setMessage(e.target.value)}
                   required
                   placeholder="Detailed explanation..."
-                  className="bg-slate-900/60 border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-purple-500 text-white resize-none"
+                  className="bg-slate-900/60 border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-red-500 text-white resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="mt-2 bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all duration-300 flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(168,85,247,0.2)]"
+                className="mt-2 bg-red-600 hover:bg-red-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all duration-300 flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(239,68,68,0.2)]"
               >
                 <Send className="h-3.5 w-3.5" /> Submit Ticket
               </button>
