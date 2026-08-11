@@ -61,7 +61,7 @@ export default function Features() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {list.map((feat, i) => (
-            <GlowCard key={i} glowColor={i % 2 === 0 ? "blue" : "purple"}>
+            <GlowCard key={i} glowColor={i % 2 === 0 ? "red" : "none"}>
               <div className="mb-4">{feat.icon}</div>
               <h3 className="text-lg font-bold mb-2">{feat.title}</h3>
               <p className="text-sm text-slate-400 leading-relaxed">{feat.description}</p>
