@@ -1,12 +1,73 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { ParticleBg } from "@/components/particle-bg";
 import { Navigation } from "@/components/navigation";
 import { GlowCard } from "@/components/glow-card";
-import { Terminal, Code, Server, BookOpen, Layers } from "lucide-react";
+import { Terminal, Code, Server, BookOpen, Layers, Lock } from "lucide-react";
 
 export default function Documentation() {
+  const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("/api/auth/check");
+        if (res.ok) {
+          const data = await res.json();
+          setIsAuthenticated(data.authenticated);
+        }
+      } catch (error) {
+        console.error("Auth check failed:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAuth();
+  }, []);
+
+  if (loading) {
+    return (
+      <main className="relative min-h-screen text-slate-100">
+        <ParticleBg />
+        <Navigation />
+        <div className="flex items-center justify-center h-screen">
+          <div className="text-center">
+            <Lock className="h-12 w-12 text-red-400 mx-auto mb-4 animate-pulse" />
+            <p className="text-slate-400">Verifying access...</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <main className="relative min-h-screen text-slate-100">
+        <ParticleBg />
+        <Navigation />
+        <div className="flex items-center justify-center h-screen px-6">
+          <GlowCard glowColor="red" className="max-w-md w-full p-8 text-center">
+            <Lock className="h-16 w-16 text-red-400 mx-auto mb-6" />
+            <h2 className="text-2xl font-bold font-outfit mb-4">Documentation Restricted</h2>
+            <p className="text-slate-400 mb-6">
+              Documentation and SDK access is available to registered users only. Please log in to view integration guides and API references.
+            </p>
+            <button
+              onClick={() => router.push("/login")}
+              className="w-full py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-semibold transition-all shadow-[0_0_20px_rgba(239,68,68,0.3)]"
+            >
+              Login to Access
+            </button>
+          </GlowCard>
+        </div>
+      </main>
+    );
+  }
+
   const [activeTab, setActiveTab] = useState<"api" | "sdk">("api");
 
   const cppExample = `#include <iostream>
