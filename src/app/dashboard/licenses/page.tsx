@@ -261,8 +261,8 @@ export default function LicensesManager() {
                 <ChevronDown className="h-4 w-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               </div>
               <div className="h-8 w-[1px] bg-white/10 mx-1" />
-              <Link href={`/dashboard/app-users${selectedApp ? `?appId=${selectedApp}` : ""}`} className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-transparent bg-white/5 text-xs font-bold text-slate-300 hover:text-red-300 hover:border-red-500/30 hover:bg-red-500/10 transition-all">
-                <Users className="h-4 w-4" /> User Matrix
+              <Link href={`/dashboard/app-users${selectedApp ? `?appId=${selectedApp}` : ""}`} className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border text-xs font-bold transition-all ${selectedApp ? 'border-red-500/30 bg-red-500/10 text-red-300' : 'border-transparent bg-white/5 text-slate-300 hover:text-red-300 hover:border-red-500/30 hover:bg-red-500/10'}`}>
+                <Users className="h-4 w-4 text-red-400" /> User Matrix
               </Link>
               <button onClick={fetchLicenses} className="p-2.5 rounded-lg bg-white/5 border border-transparent hover:border-white/20 text-slate-300 hover:text-white transition-all">
                 <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin text-red-400' : ''}`} />
