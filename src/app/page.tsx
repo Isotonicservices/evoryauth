@@ -82,8 +82,8 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
           <div className="h-11 bg-slate-950/80 border-b border-white/5 flex items-center px-4 gap-2">
             <div className="w-3 h-3 rounded-full bg-red-500/60" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-            <div className="w-3 h-3 rounded-full bg-green-500/60" />
+            <div className="w-3 h-3 rounded-full bg-white/60" />
+            <div className="w-3 h-3 rounded-full bg-red-500/60" />
             <div className="text-xs text-slate-500 font-mono ml-4 select-none">https://portal.Hyper Auth.com/dashboard</div>
           </div>
           <div className="bg-slate-900/60 backdrop-blur-md p-6 flex flex-col md:flex-row gap-6 min-h-[350px]">
@@ -106,26 +106,26 @@ export default function Home() {
             <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="h-28 glass-panel border border-white/5 rounded-xl p-4 flex flex-col justify-between">
                 <span className="text-xs text-slate-400 font-semibold">Active Licenses</span>
-                <span className="text-3xl font-extrabold text-white text-neon-blue">1,482</span>
+                <span className="text-3xl font-extrabold text-white">1,482</span>
               </div>
               <div className="h-28 glass-panel border border-white/5 rounded-xl p-4 flex flex-col justify-between">
                 <span className="text-xs text-slate-400 font-semibold">API Requests</span>
-                <span className="text-3xl font-extrabold text-indigo-400 text-neon-purple">341,209</span>
+                <span className="text-3xl font-extrabold text-white">341,209</span>
               </div>
               <div className="h-28 glass-panel border border-white/5 rounded-xl p-4 flex flex-col justify-between">
                 <span className="text-xs text-slate-400 font-semibold">Security Status</span>
-                <span className="text-sm font-semibold px-2 py-1 bg-green-500/10 border border-green-500/30 text-green-400 rounded-md w-fit inline-flex items-center gap-1">
+                <span className="text-sm font-semibold px-2 py-1 bg-red-500/10 border border-red-500/30 text-red-400 rounded-md w-fit inline-flex items-center gap-1">
                   <CheckCircle2 className="h-3 w-3" /> Protected
                 </span>
               </div>
               {/* Fake Graph */}
               <div className="md:col-span-3 h-32 glass-panel border border-white/5 rounded-xl p-4 flex items-end gap-1.5">
-                <div className="h-8 w-full bg-blue-500/20 border border-blue-500/40 rounded-sm" />
-                <div className="h-12 w-full bg-blue-500/20 border border-blue-500/40 rounded-sm" />
-                <div className="h-16 w-full bg-purple-500/20 border border-purple-500/40 rounded-sm" />
-                <div className="h-24 w-full bg-blue-500/20 border border-blue-500/40 rounded-sm" />
-                <div className="h-20 w-full bg-blue-500/20 border border-blue-500/40 rounded-sm" />
-                <div className="h-28 w-full bg-purple-500/20 border border-purple-500/40 rounded-sm animate-pulse" />
+                <div className="h-8 w-full bg-red-500/20 border border-red-500/40 rounded-sm" />
+                <div className="h-12 w-full bg-red-500/20 border border-red-500/40 rounded-sm" />
+                <div className="h-16 w-full bg-white/20 border border-white/40 rounded-sm" />
+                <div className="h-24 w-full bg-red-500/20 border border-red-500/40 rounded-sm" />
+                <div className="h-20 w-full bg-red-500/20 border border-red-500/40 rounded-sm" />
+                <div className="h-28 w-full bg-red-500/20 border border-red-500/40 rounded-sm animate-pulse" />
               </div>
             </div>
           </div>
@@ -133,22 +133,22 @@ export default function Home() {
 
         {/* Feature Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-32 w-full text-left">
-          <GlowCard glowColor="blue">
-            <Lock className="h-10 w-10 text-blue-400 mb-4" />
+          <GlowCard glowColor="red">
+            <Lock className="h-10 w-10 text-red-400 mb-4" />
             <h3 className="text-lg font-bold mb-2">AES-256-GCM Handshake</h3>
             <p className="text-sm text-slate-400 leading-relaxed">
               Every SDK connection uses dynamic temporary key cryptography to secure communications against local packet sniffers and decompilers.
             </p>
           </GlowCard>
-          <GlowCard glowColor="purple">
-            <Cpu className="h-10 w-10 text-purple-400 mb-4" />
+          <GlowCard glowColor="red">
+            <Cpu className="h-10 w-10 text-red-400 mb-4" />
             <h3 className="text-lg font-bold mb-2">HWID Lock Verification</h3>
             <p className="text-sm text-slate-400 leading-relaxed">
               Ensure software licenses are locked to specific machines. Automated hardware ID fingerprint parsing blocks simultaneous usage.
             </p>
           </GlowCard>
-          <GlowCard glowColor="cyan">
-            <Terminal className="h-10 w-10 text-cyan-400 mb-4" />
+          <GlowCard glowColor="red">
+            <Terminal className="h-10 w-10 text-red-400 mb-4" />
             <h3 className="text-lg font-bold mb-2">Multi-Language SDKs</h3>
             <p className="text-sm text-slate-400 leading-relaxed">
               Native boilerplate configurations for C++, C#, Python, JavaScript, and Lua enable integration into any client project.
@@ -162,7 +162,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center gap-4">
           <img src="/logo.png" alt="Hyper Team" className="h-10 w-10 object-contain drop-shadow-[0_0_15px_rgba(59,130,246,0.5)] grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
           <p className="text-slate-500 text-sm font-medium tracking-wide">
-            © {new Date().getFullYear()} <span className="text-blue-400 font-bold">Hyper Team</span>. All rights reserved.
+            © {new Date().getFullYear()} <span className="text-red-400 font-bold">Hyper Team</span>. All rights reserved.
           </p>
         </div>
       </footer>

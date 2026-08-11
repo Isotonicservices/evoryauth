@@ -1,6 +1,6 @@
-# EvoryAuth - Premium Licensing & Security Platform
+# Hyper Auth - Premium Licensing & Security Platform
 
-EvoryAuth is a premium software licensing and authentication system featuring aesthetic **Glassmorphic Cyber-themed UI** dashboards, an Admin monitoring console, a secure CDN distribution network, and cryptographic client-side SDK bindings.
+Hyper Auth is a premium software licensing and authentication system featuring aesthetic **Glassmorphic Cyber-themed UI** dashboards, an Admin monitoring console, a secure CDN distribution network, and cryptographic client-side SDK bindings.
 
 ## Features
 
@@ -24,7 +24,7 @@ npm install
 
 ### 2. Configure Database & Environment
 
-EvoryAuth is configured with a default SQLite connection file `dev.db` for zero-configuration, immediate local testing:
+Hyper Auth is configured with a default SQLite connection file `dev.db` for zero-configuration, immediate local testing:
 
 ```bash
 # Apply Prisma Schema to Database

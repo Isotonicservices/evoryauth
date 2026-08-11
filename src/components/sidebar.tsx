@@ -69,13 +69,13 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
           isActive
             ? isRed 
               ? "bg-gradient-to-r from-red-600/10 to-transparent text-red-400"
-              : "bg-gradient-to-r from-blue-600/10 to-transparent text-blue-400"
+              : "bg-gradient-to-r from-red-600/10 to-transparent text-red-400"
             : "text-slate-400 hover:text-white hover:bg-white/5"
         }`}
       >
         {isActive && (
           <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-3/5 rounded-r-full animate-pulse ${
-            isRed ? "bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" : "bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"
+            isRed ? "bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" : "bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]"
           }`} />
         )}
         
@@ -108,7 +108,7 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
         {user && (
           <div className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors cursor-pointer group relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-red-500 to-orange-600 p-[2px] flex-shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
+            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-red-500 to-red-700 p-[2px] flex-shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
               <div className="h-full w-full rounded-full bg-[#0a0a14] flex items-center justify-center text-sm font-bold text-white uppercase overflow-hidden">
                 {user.username.substring(0, 2)}
               </div>

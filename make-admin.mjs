@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 async function main() {
   const email = process.argv[2]
   if (!email) {
-    console.log("Please provide an email. Example: node make-admin.mjs admin@evory.team")
+    console.log("Please provide an email. Example: node make-admin.mjs admin@hyper.team")
     process.exit(1)
   }
   

@@ -38,11 +38,11 @@ export default function Status() {
         </div>
 
         <GlowCard glowColor="red" className="mb-8">
-          <div className="flex items-center gap-3 mb-6 bg-green-500/10 border border-green-500/20 p-4 rounded-xl text-green-400">
+          <div className="flex items-center gap-3 mb-6 bg-red-500/10 border border-red-500/20 p-4 rounded-xl text-red-400">
             <CheckCircle2 className="h-6 w-6 shrink-0" />
             <div>
               <h3 className="font-bold text-sm">All Systems Operational</h3>
-              <p className="text-xs text-green-500/80">No outages or security breaches registered in the last 30 days.</p>
+              <p className="text-xs text-red-500/80">No outages or security breaches registered in the last 30 days.</p>
             </div>
           </div>
 
@@ -52,7 +52,7 @@ export default function Status() {
                 <span className="text-xs text-slate-300 font-semibold">{name}</span>
                 <div className="flex items-center gap-3">
                   <span className="font-mono text-xs text-slate-500">{ping} ms</span>
-                  <span className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)] animate-pulse" />
+                  <span className="h-2 w-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)] animate-pulse" />
                 </div>
               </div>
             ))}

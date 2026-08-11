@@ -61,7 +61,7 @@ export default function Register() {
         )}
 
         {success && (
-          <div className="mb-6 p-3 rounded-lg bg-green-500/10 border border-green-500/30 text-xs text-green-400 font-semibold">
+          <div className="mb-6 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-xs text-red-400 font-semibold">
             {success}
           </div>
         )}
@@ -73,7 +73,7 @@ export default function Register() {
               <User className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
               <input
                 type="text"
-                placeholder="Developer username"
+                placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required

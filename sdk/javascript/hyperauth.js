@@ -1,4 +1,4 @@
-class EvoryAuth {
+class HyperAuth {
   constructor(appId, secret, version) {
     this.appId = appId;
     this.secret = secret;
@@ -47,4 +47,4 @@ class EvoryAuth {
   }
 }
 
-module.exports = { EvoryAuth };
+module.exports = { HyperAuth };

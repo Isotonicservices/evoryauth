@@ -2,9 +2,9 @@ using System;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace EvoryAuthSDK
+namespace HyperAuthSDK
 {
-    public class EvoryAuth
+    public class HyperAuth
     {
         private readonly string appId;
         private readonly string secret;
@@ -13,7 +13,7 @@ namespace EvoryAuthSDK
         private string tempKey;
         private bool initialized;
 
-        public EvoryAuth(string appNameId, string appSecret, string appVersion)
+        public HyperAuth(string appNameId, string appSecret, string appVersion)
         {
             appId = appNameId;
             secret = appSecret;

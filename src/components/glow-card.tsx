@@ -63,8 +63,8 @@ export function GlowCard({ children, glowColor = "blue", className = "", withShi
               : glowColor === "cyan"
               ? "from-cyan-500 to-emerald-500"
               : glowColor === "red"
-              ? "from-red-500 to-orange-500"
-              : "from-green-500 to-emerald-500"
+              ? "from-red-500 to-red-600"
+              : "from-white to-white"}
           }`}
         />
       )}

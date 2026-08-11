@@ -289,7 +289,7 @@ public class Hyper Auth
 }
 
 // Usage:
-var result = await Evory Auth.Authenticate("Secure-XXXX-YYYY-ZZZZ-WWWW", GetHWID());`;
+var result = await HyperAuth.Authenticate("Secure-XXXX-YYYY-ZZZZ-WWWW", GetHWID());`;
 
   const pythonCode = `# Python SDK Example
 import requests
@@ -332,7 +332,7 @@ else:
               <Code2 className="h-6 w-6 text-blue-400" /> API Reference
             </h1>
             <p className="text-xs text-slate-500">
-              Integrate Evory Auth into your application using our REST API. Base URL:{" "}
+              Integrate Hyper Auth into your application using our REST API. Base URL:{" "}
               <code className="text-blue-300 bg-blue-500/10 px-1.5 py-0.5 rounded font-mono">{baseUrl}</code>
             </p>
           </div>
@@ -642,7 +642,7 @@ if (data.success) {
             
             <GlowCard glowColor="blue">
               <div className="space-y-4 text-sm text-slate-300">
-                <p>Follow these steps to integrate Evory Auth into your custom loader or application:</p>
+                <p>Follow these steps to integrate Hyper Auth into your custom loader or application:</p>
                 <ol className="list-decimal pl-5 space-y-3">
                   <li>
                     <strong className="text-white">Copy your Application Credentials:</strong> Choose your application from the dropdown above, check "Display Code Snippet", and copy the C++ or C# variables into your source code.
@@ -674,7 +674,7 @@ if (data.success) {
             <div className="space-y-4">
               <div className="relative">
                 <div className="flex justify-between items-center mb-2">
-                  <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">C++ (Evory Auth SDK)</p>
+                  <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">C++ (Hyper Auth SDK)</p>
                   <a 
                     href="/sdk/cpp-sdk.tar.gz" 
                     download

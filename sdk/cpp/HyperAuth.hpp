@@ -4,7 +4,7 @@
 #include <iostream>
 #include <sstream>
 
-class EvoryAuth {
+class HyperAuth {
 private:
     std::string appId;
     std::string secret;
@@ -26,7 +26,7 @@ private:
     }
 
 public:
-    EvoryAuth(const std::string& appNameId, const std::string& appSecret, const std::string& appVersion)
+    HyperAuth(const std::string& appNameId, const std::string& appSecret, const std::string& appVersion)
         : appId(appNameId), secret(appSecret), version(appVersion), initialized(false) {}
 
     bool init() {

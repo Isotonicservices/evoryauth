@@ -31,12 +31,12 @@ function HwidResetModal({ lic, onConfirm, onCancel }: {
 }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md">
-      <div className="bg-[#0a0a14] border border-orange-500/30 rounded-2xl p-8 max-w-md w-full mx-4 shadow-[0_0_50px_rgba(249,115,22,0.15)] relative overflow-hidden animate-slideUp">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-600 to-amber-400" />
+      <div className="bg-[#0a0a14] border border-red-500/30 rounded-2xl p-8 max-w-md w-full mx-4 shadow-[0_0_50px_rgba(239,68,68,0.15)] relative overflow-hidden animate-slideUp">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 to-red-400" />
         
         <div className="flex items-center gap-4 mb-6">
-          <div className="p-3 bg-orange-500/10 border border-orange-500/20 rounded-xl">
-            <Fingerprint className="h-6 w-6 text-orange-400 animate-pulse" />
+          <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+            <Fingerprint className="h-6 w-6 text-red-400 animate-pulse" />
           </div>
           <div>
             <h3 className="font-bold text-lg text-white font-outfit">Reset Hardware ID</h3>
@@ -45,9 +45,9 @@ function HwidResetModal({ lic, onConfirm, onCancel }: {
           <button onClick={onCancel} className="ml-auto text-slate-500 hover:text-white p-2 bg-white/5 rounded-lg transition-colors"><X className="h-4 w-4" /></button>
         </div>
         
-        <div className="bg-orange-500/5 border border-orange-500/20 rounded-xl p-4 mb-6">
-          <span className="text-[10px] text-orange-500/70 font-bold uppercase tracking-widest block mb-2">Target License Key</span>
-          <p className="font-mono text-sm text-orange-300 break-all font-bold">{lic.key}</p>
+        <div className="bg-red-500/5 border border-red-500/20 rounded-xl p-4 mb-6">
+          <span className="text-[10px] text-red-500/70 font-bold uppercase tracking-widest block mb-2">Target License Key</span>
+          <p className="font-mono text-sm text-red-300 break-all font-bold">{lic.key}</p>
         </div>
         
         <p className="text-xs text-slate-400 mb-8 leading-relaxed">
@@ -57,7 +57,7 @@ function HwidResetModal({ lic, onConfirm, onCancel }: {
         
         <div className="flex gap-3">
           <button onClick={onCancel} className="flex-1 py-3 rounded-xl border border-white/10 bg-white/5 text-xs font-bold text-slate-300 hover:text-white hover:bg-white/10 transition-all">Cancel Override</button>
-          <button onClick={onConfirm} className="flex-1 py-3 rounded-xl bg-gradient-to-r from-orange-600 to-amber-500 text-white text-xs font-bold hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] transition-all flex items-center justify-center gap-2">
+          <button onClick={onConfirm} className="flex-1 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white text-xs font-bold hover:shadow-[0_0_20px_rgba(239,68,68,0.4)] transition-all flex items-center justify-center gap-2">
             <RefreshCw className="h-4 w-4" /> Execute Reset
           </button>
         </div>
@@ -75,31 +75,31 @@ function NewKeysBanner({ newKeys, onDismiss }: { newKeys: License[]; onDismiss: 
     setTimeout(() => setCopied(false), 3000);
   };
   return (
-    <div className="mb-8 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6 relative overflow-hidden animate-slideUp shadow-[0_0_30px_rgba(16,185,129,0.15)]">
-      <div className="absolute top-0 right-0 p-32 bg-emerald-500/20 blur-[100px] rounded-full pointer-events-none" />
+    <div className="mb-8 bg-red-500/10 border border-red-500/30 rounded-2xl p-6 relative overflow-hidden animate-slideUp shadow-[0_0_30px_rgba(239,68,68,0.15)]">
+      <div className="absolute top-0 right-0 p-32 bg-red-500/20 blur-[100px] rounded-full pointer-events-none" />
       
-      <button onClick={onDismiss} className="absolute top-4 right-4 text-emerald-500/50 hover:text-emerald-300 bg-emerald-500/10 p-1.5 rounded-lg transition-colors z-10"><X className="h-4 w-4" /></button>
+      <button onClick={onDismiss} className="absolute top-4 right-4 text-red-500/50 hover:text-red-300 bg-red-500/10 p-1.5 rounded-lg transition-colors z-10"><X className="h-4 w-4" /></button>
       
       <div className="flex items-center gap-3 mb-5 relative z-10">
-        <div className="p-2 bg-emerald-500/20 rounded-lg border border-emerald-500/30">
-          <Sparkles className="h-5 w-5 text-emerald-400" />
+        <div className="p-2 bg-red-500/20 rounded-lg border border-red-500/30">
+          <Sparkles className="h-5 w-5 text-red-400" />
         </div>
         <div>
-          <span className="text-sm font-bold text-emerald-400 block font-outfit">Generation Successful</span>
-          <span className="text-[10px] text-emerald-500/70 font-bold uppercase tracking-widest">{newKeys.length} New Key{newKeys.length > 1 ? "s" : ""} Minted</span>
+          <span className="text-sm font-bold text-red-400 block font-outfit">Generation Successful</span>
+          <span className="text-[10px] text-red-500/70 font-bold uppercase tracking-widest">{newKeys.length} New Key{newKeys.length > 1 ? "s" : ""} Minted</span>
         </div>
       </div>
       
-      <div className="space-y-2 mb-5 max-h-48 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-emerald-500/30 relative z-10">
+      <div className="space-y-2 mb-5 max-h-48 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-red-500/30 relative z-10">
         {newKeys.map(k => (
-          <div key={k.id} className="flex justify-between items-center bg-black/40 border border-emerald-500/20 px-4 py-2.5 rounded-xl">
-            <span className="font-mono text-xs font-bold text-emerald-300 tracking-wider select-all">{k.key}</span>
-            {k.label && <span className="text-[9px] font-bold uppercase tracking-widest text-emerald-500/60 bg-emerald-500/10 px-2 py-1 rounded">{k.label}</span>}
+          <div key={k.id} className="flex justify-between items-center bg-black/40 border border-red-500/20 px-4 py-2.5 rounded-xl">
+            <span className="font-mono text-xs font-bold text-red-300 tracking-wider select-all">{k.key}</span>
+            {k.label && <span className="text-[9px] font-bold uppercase tracking-widest text-red-500/60 bg-red-500/10 px-2 py-1 rounded">{k.label}</span>}
           </div>
         ))}
       </div>
       
-      <button onClick={handleCopyAll} className={`relative z-10 w-full flex justify-center items-center gap-2 py-3 rounded-xl text-xs font-bold transition-all ${copied ? "bg-emerald-500/30 border border-emerald-400/50 text-emerald-200" : "bg-emerald-600 hover:bg-emerald-500 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)]"}`}>
+      <button onClick={handleCopyAll} className={`relative z-10 w-full flex justify-center items-center gap-2 py-3 rounded-xl text-xs font-bold transition-all ${copied ? "bg-red-500/30 border border-red-400/50 text-red-200" : "bg-red-600 hover:bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.3)]"}`}>
         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
         {copied ? "Copied to Clipboard!" : `Copy All ${newKeys.length} Keys to Clipboard`}
       </button>

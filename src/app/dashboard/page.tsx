@@ -106,8 +106,8 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#030014] flex flex-col items-center justify-center text-blue-400 font-mono text-xs">
-        <div className="h-12 w-12 rounded-full border-2 border-blue-500 border-t-transparent animate-spin mb-4 shadow-[0_0_15px_rgba(59,130,246,0.5)]"></div>
+      <div className="min-h-screen bg-[#030014] flex flex-col items-center justify-center text-red-400 font-mono text-xs">
+        <div className="h-12 w-12 rounded-full border-2 border-red-500 border-t-transparent animate-spin mb-4 shadow-[0_0_15px_rgba(239,68,68,0.5)]"></div>
         Establishing secure uplink...
       </div>
     );
@@ -116,9 +116,9 @@ export default function Dashboard() {
   // Helper for log styling
   const getLogStyle = (action: string) => {
     const a = action.toLowerCase();
-    if (a.includes("login") || a.includes("success") || a.includes("create")) return { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/30", icon: <CheckCircle2 className="h-3 w-3" /> };
+    if (a.includes("login") || a.includes("success") || a.includes("create")) return { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/30", icon: <CheckCircle2 className="h-3 w-3" /> };
     if (a.includes("fail") || a.includes("ban") || a.includes("delete") || a.includes("error")) return { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/30", icon: <XCircle className="h-3 w-3" /> };
-    return { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/30", icon: <Info className="h-3 w-3" /> };
+    return { color: "text-white", bg: "bg-white/10", border: "border-white/30", icon: <Info className="h-3 w-3" /> };
   };
 
   return (
@@ -161,7 +161,7 @@ export default function Dashboard() {
             </div>
             <div className="flex items-end gap-3">
               <span className="text-4xl font-extrabold text-white"><AnimatedNumber value={stats?.appCount || 0} /></span>
-              <span className="text-xs text-emerald-400 flex items-center gap-1 mb-1 font-semibold"><TrendingUp className="h-3 w-3" /> System Active</span>
+              <span className="text-xs text-red-400 flex items-center gap-1 mb-1 font-semibold"><TrendingUp className="h-3 w-3" /> System Active</span>
             </div>
           </GlowCard>
           

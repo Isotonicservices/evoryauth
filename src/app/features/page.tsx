@@ -25,17 +25,17 @@ export default function Features() {
       description: "Create Lifetime, 1 Day, 7 Days, or Custom Duration keys in bulk via the dashboard. Pause keys anytime or ban malicious users.",
     },
     {
-      icon: <Globe className="h-8 w-8 text-emerald-400" />,
+      icon: <Globe className="h-8 w-8 text-white" />,
       title: "Secure File CDN Hosting",
       description: "Upload updates and installers directly to the Hyper Auth CDN. Secure links are verified against license validity before downloading.",
     },
     {
-      icon: <Eye className="h-8 w-8 text-yellow-400" />,
+      icon: <Eye className="h-8 w-8 text-white" />,
       title: "Audit Logging",
       description: "Track precise login records, user registration IPs, validation attempts, and failure flags straight from your control panel.",
     },
     {
-      icon: <Code className="h-8 w-8 text-pink-400" />,
+      icon: <Code className="h-8 w-8 text-white" />,
       title: "Multi-Language Integrations",
       description: "Use pre-built, robust libraries inside C++, C#, Python, JavaScript, and Lua files for quick software instrumentation.",
     },

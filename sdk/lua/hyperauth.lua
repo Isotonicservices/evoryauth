@@ -1,8 +1,8 @@
-local EvoryAuth = {}
-EvoryAuth.__index = EvoryAuth
+local HyperAuth = {}
+HyperAuth.__index = HyperAuth
 
-function EvoryAuth.new(appId, secret, version)
-    local self = setmetatable({}, EvoryAuth)
+function HyperAuth.new(appId, secret, version)
+    local self = setmetatable({}, HyperAuth)
     self.appId = appId
     self.secret = secret
     self.version = version
@@ -17,7 +17,7 @@ function self_sendPostRequest(endpoint, data)
     return "{\"success\":true,\"payload\":\"mocked_response\"}"
 end
 
-function EvoryAuth:init()
+function HyperAuth:init()
     local payload = "{\"appId\":\"" .. self.appId .. "\"}"
     local response = self_sendPostRequest("/api/client/handshake", payload)
     
@@ -30,7 +30,7 @@ function EvoryAuth:init()
     return false
 end
 
-function EvoryAuth:login(username, password, hwid)
+function HyperAuth:login(username, password, hwid)
     if not self.initialized then
         error("SDK is not initialized. Run init() first.")
     end
@@ -41,4 +41,4 @@ function EvoryAuth:login(username, password, hwid)
     return response:find("\"success\":true") ~= nil
 end
 
-return EvoryAuth
+return HyperAuth

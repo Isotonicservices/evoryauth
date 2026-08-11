@@ -25,9 +25,9 @@ const ROLES = ["USER", "ADMIN"];
 
 const planColors: Record<string, string> = {
   FREE: "text-slate-400 bg-slate-500/10 border-slate-500/20",
-  BASIC: "text-blue-400 bg-blue-500/10 border-blue-500/20",
-  PRO: "text-purple-400 bg-purple-500/10 border-purple-500/20",
-  ENTERPRISE: "text-amber-400 bg-amber-500/10 border-amber-500/20",
+  BASIC: "text-white bg-white/10 border-white/20",
+  PRO: "text-red-400 bg-red-500/10 border-red-500/20",
+  ENTERPRISE: "text-red-400 bg-red-500/10 border-red-500/20",
 };
 
 const roleColors: Record<string, string> = {
@@ -110,7 +110,7 @@ export default function UsersManager() {
           <div className="flex flex-wrap justify-between items-start gap-4 mb-8">
             <div>
               <h1 className="text-2xl font-bold font-outfit flex items-center gap-2">
-                <Users className="h-6 w-6 text-purple-400" /> User Management
+                <Users className="h-6 w-6 text-red-400" /> User Management
               </h1>
               <p className="text-xs text-slate-500 mt-1">
                 Manage platform users, roles, subscription plans and account status.
@@ -127,12 +127,12 @@ export default function UsersManager() {
           {/* Stats row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {[
-              { label: "Total Users", value: stats.total, icon: <User className="h-4 w-4 text-blue-400" />, color: "blue", glow: "blue" },
-              { label: "Administrators", value: stats.admins, icon: <ShieldCheck className="h-4 w-4 text-red-400" />, color: "red", glow: "purple" },
-              { label: "Banned", value: stats.banned, icon: <ShieldX className="h-4 w-4 text-yellow-400" />, color: "yellow", glow: "purple" },
-              { label: "Enterprise", value: stats.enterprise, icon: <Crown className="h-4 w-4 text-amber-400" />, color: "amber", glow: "cyan" },
+              { label: "Total Users", value: stats.total, icon: <User className="h-4 w-4 text-white" />, color: "white", glow: "red" },
+              { label: "Administrators", value: stats.admins, icon: <ShieldCheck className="h-4 w-4 text-red-400" />, color: "red", glow: "red" },
+              { label: "Banned", value: stats.banned, icon: <ShieldX className="h-4 w-4 text-red-400" />, color: "red", glow: "red" },
+              { label: "Enterprise", value: stats.enterprise, icon: <Crown className="h-4 w-4 text-red-400" />, color: "red", glow: "red" },
             ].map(s => (
-              <GlowCard key={s.label} glowColor={s.glow as "blue" | "purple" | "cyan"} className="flex items-center gap-3 p-4">
+              <GlowCard key={s.label} glowColor={s.glow as "red"} className="flex items-center gap-3 p-4">
                 <div className={`p-2 rounded-lg bg-${s.color}-500/10`}>{s.icon}</div>
                 <div>
                   <p className="text-lg font-bold">{s.value}</p>
@@ -150,12 +150,12 @@ export default function UsersManager() {
               placeholder="Search by username or email..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full bg-slate-900/60 border border-white/10 rounded-xl pl-9 pr-4 py-2.5 text-xs focus:outline-none focus:border-purple-500/50 placeholder-slate-600"
+              className="w-full bg-slate-900/60 border border-white/10 rounded-xl pl-9 pr-4 py-2.5 text-xs focus:outline-none focus:border-red-500/50 placeholder-slate-600"
             />
           </div>
 
           {/* Users Table */}
-          <GlowCard glowColor="purple">
+          <GlowCard glowColor="red">
             {error && (
               <div className="mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-xs text-red-400">
                 {error}
@@ -186,7 +186,7 @@ export default function UsersManager() {
                         {/* User info */}
                         <td className="py-3 pr-4">
                           <div className="flex items-center gap-2">
-                            <div className="h-7 w-7 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-[10px] font-bold shrink-0">
+                            <div className="h-7 w-7 rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-[10px] font-bold shrink-0">
                               {user.username[0].toUpperCase()}
                             </div>
                             <div>
@@ -203,7 +203,7 @@ export default function UsersManager() {
                               <select
                                 value={editData.role ?? user.role}
                                 onChange={e => setEditData(p => ({ ...p, role: e.target.value }))}
-                                className="appearance-none bg-slate-800 border border-white/10 rounded px-2 py-1 text-[10px] pr-5 focus:outline-none focus:border-purple-500"
+                                className="appearance-none bg-slate-800 border border-white/10 rounded px-2 py-1 text-[10px] pr-5 focus:outline-none focus:border-red-500"
                               >
                                 {ROLES.map(r => <option key={r}>{r}</option>)}
                               </select>
@@ -223,7 +223,7 @@ export default function UsersManager() {
                               <select
                                 value={editData.plan ?? user.plan}
                                 onChange={e => setEditData(p => ({ ...p, plan: e.target.value }))}
-                                className="appearance-none bg-slate-800 border border-white/10 rounded px-2 py-1 text-[10px] pr-5 focus:outline-none focus:border-purple-500"
+                                className="appearance-none bg-slate-800 border border-white/10 rounded px-2 py-1 text-[10px] pr-5 focus:outline-none focus:border-red-500"
                               >
                                 {PLANS.map(p => <option key={p}>{p}</option>)}
                               </select>
@@ -251,7 +251,7 @@ export default function UsersManager() {
                               <select
                                 value={editData.status ?? user.status}
                                 onChange={e => setEditData(p => ({ ...p, status: e.target.value }))}
-                                className="appearance-none bg-slate-800 border border-white/10 rounded px-2 py-1 text-[10px] pr-5 focus:outline-none focus:border-purple-500"
+                                className="appearance-none bg-slate-800 border border-white/10 rounded px-2 py-1 text-[10px] pr-5 focus:outline-none focus:border-red-500"
                               >
                                 <option>ACTIVE</option>
                                 <option>BANNED</option>
@@ -259,7 +259,7 @@ export default function UsersManager() {
                               <ChevronDown className="h-2.5 w-2.5 absolute right-1 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                             </div>
                           ) : (
-                            <span className={`flex items-center gap-1 text-[10px] font-semibold ${user.status === "ACTIVE" ? "text-green-400" : "text-red-400"}`}>
+                            <span className={`flex items-center gap-1 text-[10px] font-semibold ${user.status === "ACTIVE" ? "text-red-400" : "text-red-400"}`}>
                               {user.status === "ACTIVE"
                                 ? <CheckCircle className="h-3 w-3" />
                                 : <XCircle className="h-3 w-3" />}
@@ -296,7 +296,7 @@ export default function UsersManager() {
                               <>
                                 <button
                                   onClick={() => { setEditingId(user.id); setEditData({ role: user.role, plan: user.plan, status: user.status }); }}
-                                  className="px-2.5 py-1 bg-blue-600/10 border border-blue-500/20 text-blue-400 text-[10px] font-semibold rounded hover:bg-blue-600/20 transition-colors"
+                                  className="px-2.5 py-1 bg-red-600/10 border border-red-500/20 text-red-400 text-[10px] font-semibold rounded hover:bg-red-600/20 transition-colors"
                                 >
                                   Edit
                                 </button>

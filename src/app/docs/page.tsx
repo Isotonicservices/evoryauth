@@ -86,7 +86,7 @@ else:
             onClick={() => setActiveTab("api")}
             className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 text-left ${
               activeTab === "api"
-                ? "bg-blue-600/10 border border-blue-500/30 text-blue-400"
+                ? "bg-red-600/10 border border-red-500/30 text-red-400"
                 : "text-slate-400 hover:text-white hover:bg-white/5"
             }`}
           >
@@ -97,7 +97,7 @@ else:
             onClick={() => setActiveTab("sdk")}
             className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 text-left ${
               activeTab === "sdk"
-                ? "bg-purple-600/10 border border-purple-500/30 text-purple-400"
+                ? "bg-red-600/10 border border-red-500/30 text-red-400"
                 : "text-slate-400 hover:text-white hover:bg-white/5"
             }`}
           >
@@ -108,9 +108,9 @@ else:
         {/* Content Panel */}
         <div className="flex-1">
           {activeTab === "api" ? (
-            <GlowCard glowColor="blue">
+            <GlowCard glowColor="red">
               <h2 className="text-xl font-bold font-outfit mb-2 flex items-center gap-2">
-                <Terminal className="h-5 w-5 text-blue-400" /> API Reference Guide
+                <Terminal className="h-5 w-5 text-red-400" /> API Reference Guide
               </h2>
               <p className="text-xs text-slate-400 mb-6 leading-relaxed">
                 Connect external scripts or custom binaries straight to our secure endpoints. 
@@ -119,7 +119,7 @@ else:
 
               <div className="flex flex-col gap-6">
                 <div className="border-b border-white/5 pb-4">
-                  <span className="inline-block bg-blue-600/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded text-[10px] font-bold mb-2">
+                  <span className="inline-block bg-red-600/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded text-[10px] font-bold mb-2">
                     POST
                   </span>
                   <h4 className="text-sm font-bold font-mono">/api/client/handshake</h4>
@@ -130,7 +130,7 @@ else:
                 </div>
 
                 <div className="border-b border-white/5 pb-4">
-                  <span className="inline-block bg-blue-600/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded text-[10px] font-bold mb-2">
+                  <span className="inline-block bg-red-600/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded text-[10px] font-bold mb-2">
                     POST
                   </span>
                   <h4 className="text-sm font-bold font-mono">/api/client/login</h4>
@@ -141,7 +141,7 @@ else:
                 </div>
 
                 <div>
-                  <span className="inline-block bg-blue-600/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded text-[10px] font-bold mb-2">
+                  <span className="inline-block bg-red-600/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded text-[10px] font-bold mb-2">
                     POST
                   </span>
                   <h4 className="text-sm font-bold font-mono">/api/client/validate</h4>
@@ -150,11 +150,11 @@ else:
               </div>
             </GlowCard>
           ) : (
-            <GlowCard glowColor="purple">
+            <GlowCard glowColor="red">
               <div className="flex justify-between items-start mb-6">
                 <div>
                   <h2 className="text-xl font-bold font-outfit mb-2 flex items-center gap-2">
-                    <Code className="h-5 w-5 text-purple-400" /> SDK Integrations & Boilerplate
+                    <Code className="h-5 w-5 text-red-400" /> SDK Integrations & Boilerplate
                   </h2>
                   <p className="text-xs text-slate-400">
                     Deploy licensing checks inside your target binaries with our boilerplate routines.
@@ -163,7 +163,7 @@ else:
                 <a 
                   href="/sdk/cpp-sdk.tar.gz" 
                   download
-                  className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-xs font-bold transition-all shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_25px_rgba(147,51,234,0.5)] flex items-center gap-2"
+                  className="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg text-xs font-bold transition-all shadow-[0_0_15px_rgba(239,68,68,0.3)] hover:shadow-[0_0_25px_rgba(239,68,68,0.5)] flex items-center gap-2"
                 >
                   <Code className="w-4 h-4" /> Download C++ SDK
                 </a>

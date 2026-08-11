@@ -6,10 +6,10 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/evoryauth?schema=public
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/hyperauth?schema=public
       - REDIS_URL=redis://redis:6379
-      - JWT_SECRET=evoryauth_production_secret_key_1029381023
-      - SDK_ENCRYPTION_SECRET=evoryauth_production_sdk_secret_key
+      - JWT_SECRET=hyperauth_production_secret_key_1029381023
+      - SDK_ENCRYPTION_SECRET=hyperauth_production_sdk_secret_key
     depends_on:
       - db
       - redis
@@ -20,7 +20,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: evoryauth
+      POSTGRES_DB=hyperauth
     ports:
       - "5432:5432"
     volumes:

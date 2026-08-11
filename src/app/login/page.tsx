@@ -203,7 +203,7 @@ export default function Login() {
                 </button>
               </div>
 
-              <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-1 pr-2 scrollbar-thin scrollbar-thumb-red-900/50 scrollbar-track-transparent font-mono text-[13px] text-green-500/90 drop-shadow-[0_0_5px_rgba(34,197,94,0.5)] z-10">
+              <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-1 pr-2 scrollbar-thin scrollbar-thumb-red-900/50 scrollbar-track-transparent font-mono text-[13px] text-red-400/90 drop-shadow-[0_0_5px_rgba(239,68,68,0.5)] z-10">
                 {terminalLines.map((line, i) => (
                   <div key={i} className="whitespace-pre-wrap leading-relaxed">
                     {line}
@@ -218,7 +218,7 @@ export default function Login() {
                   type="text"
                   value={terminalInput}
                   onChange={(e) => setTerminalInput(e.target.value)}
-                  className="flex-1 bg-transparent border-none outline-none text-green-400 font-mono caret-green-500 text-[13px] drop-shadow-[0_0_5px_rgba(34,197,94,0.5)] p-0"
+                  className="flex-1 bg-transparent border-none outline-none text-red-400 font-mono caret-red-500 text-[13px] drop-shadow-[0_0_5px_rgba(239,68,68,0.5)] p-0"
                   autoFocus
                   autoComplete="off"
                   spellCheck="false"
@@ -234,7 +234,7 @@ export default function Login() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="w-full max-w-md z-10 relative group"
         >
-          <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-[24px] blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-700 rounded-[24px] blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
           
           <div className="relative bg-[#05050a]/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-10 overflow-hidden">
             <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-red-500/50 to-transparent"></div>
@@ -242,7 +242,7 @@ export default function Login() {
             <div className="flex flex-col items-center mb-10 relative z-10">
               <div className="relative mb-6">
                 <div className="absolute inset-0 bg-red-500 rounded-2xl blur-xl opacity-40 animate-pulse"></div>
-                <div className="h-20 w-20 bg-gradient-to-br from-red-600 to-orange-800 rounded-2xl flex items-center justify-center p-[2px] shadow-[0_0_30px_rgba(239,68,68,0.3)]">
+                <div className="h-20 w-20 bg-gradient-to-br from-red-600 to-red-800 rounded-2xl flex items-center justify-center p-[2px] shadow-[0_0_30px_rgba(239,68,68,0.3)]">
                   <div className="h-full w-full bg-[#0a0a14] rounded-2xl flex items-center justify-center">
                     <img src="/logo.png" alt="Logo" className="h-12 w-12 object-contain drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
                   </div>
@@ -302,8 +302,8 @@ export default function Login() {
                 disabled={loading}
                 className="mt-4 w-full group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl p-4 font-bold text-white transition-all duration-300"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600" />
-                <span className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700" />
+                <span className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="absolute bottom-0 left-0 h-1/3 w-full bg-gradient-to-t from-black/20 to-transparent" />
                 
                 <span className="relative z-10 flex items-center gap-2">

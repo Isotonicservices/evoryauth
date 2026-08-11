@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "evoryauth",
+      name: "hyperauth",
       script: "node_modules/next/dist/bin/next",
       args: "start",
       instances: "max",

@@ -1,7 +1,7 @@
 import json
 import hashlib
 
-class EvoryAuth:
+class HyperAuth:
     def __init__(self, app_id: str, secret: str, version: str):
         self.app_id = app_id
         self.secret = secret
