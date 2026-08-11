@@ -432,8 +432,12 @@ export default function AppUsersManager() {
           {/* Data Tables */}
           <GlowCard glowColor={activeTab === "users" ? "red" : "none"}>
             {loading ? (
-              <div className="flex items-center gap-2 text-xs text-slate-500 py-12 justify-center">
-                <RefreshCw className="h-3.5 w-3.5 animate-spin" /> Loading data...
+              <div className="flex flex-col items-center justify-center py-20 text-slate-500 font-mono text-xs gap-4">
+                <div className="relative">
+                  <div className="h-12 w-12 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+                  <div className="absolute inset-0 h-12 w-12 border-2 border-red-500/30 rounded-full"></div>
+                </div>
+                Loading data...
               </div>
             ) : activeTab === "users" ? (
               <div className="overflow-x-auto">

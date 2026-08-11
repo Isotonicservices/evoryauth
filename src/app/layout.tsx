@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   description: "Next-generation secure software licensing platform with automated hardware locks, encrypted handshakes, and developer APIs.",
   icons: {
     icon: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 
