@@ -3,78 +3,98 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <curl/curl.h>
 
 class HyperAuth {
 private:
     std::string appId;
     std::string secret;
-    std::string version;
+    std::string baseUrl;
     std::string sessionId;
     std::string tempKey;
     bool initialized;
 
-    // Simulated HTTP request helper (normally relies on libcurl / WinInet)
+    static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
+        ((std::string*)userp)->append((char*)contents, size * nmemb);
+        return size * nmemb;
+    }
+
     std::string sendPostRequest(const std::string& endpoint, const std::string& jsonPayload) {
-        // Output for debugging simulation
-        std::cout << "[SDK Debug] POST to " << endpoint << " with: " << jsonPayload << std::endl;
-        
-        // Mock successful handshakes/logins for testing
-        if (endpoint.find("handshake") != std::string::npos) {
-            return "{\"success\":true,\"payload\":\"mocked_encrypted_session_payload\"}";
+        CURL* curl;
+        CURLcode res;
+        std::string readBuffer;
+        std::string url = baseUrl + endpoint;
+
+        curl = curl_easy_init();
+        if(curl) {
+            struct curl_slist* headers = NULL;
+            headers = curl_slist_append(headers, "Content-Type: application/json");
+            
+            curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, jsonPayload.c_str());
+            curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+            curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+            curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+            
+            res = curl_easy_perform(curl);
+            
+            curl_slist_free_all(headers);
+            curl_easy_cleanup(curl);
         }
-        return "{\"success\":true,\"payload\":\"mocked_action_response\"}";
+        return readBuffer;
     }
 
 public:
-    HyperAuth(const std::string& appNameId, const std::string& appSecret, const std::string& appVersion)
-        : appId(appNameId), secret(appSecret), version(appVersion), initialized(false) {}
+    HyperAuth(const std::string& appNameId, const std::string& appSecret, const std::string& baseUrl = "https://www.hyperion.buzz/api/client")
+        : appId(appNameId), secret(appSecret), baseUrl(baseUrl), initialized(false) {
+        curl_global_init(CURL_GLOBAL_DEFAULT);
+    }
 
-    bool init() {
-        std::string payload = "{\"appId\":\"" + appId + "\"}";
-        std::string response = sendPostRequest("/api/client/handshake", payload);
+    ~HyperAuth() {
+        curl_global_cleanup();
+    }
+
+    std::pair<bool, std::string> authenticate(const std::string& licenseKey, const std::string& hwid = "") {
+        std::string jsonPayload = "{\"appId\":\"" + appId + "\",\"appSecret\":\"" + secret + "\",\"licenseKey\":\"" + licenseKey + "\",\"hwid\":\"" + hwid + "\"}";
+        std::string response = sendPostRequest("/authenticate", jsonPayload);
         
         if (response.find("\"success\":true") != std::string::npos) {
-            this->sessionId = "MOCK-SESSION-123";
-            this->tempKey = "MOCK-KEY-ABC";
-            this->initialized = true;
-            return true;
+            return {true, "License verified successfully!"};
+        } else {
+            return {false, "Invalid license key"};
         }
-        return false;
     }
 
-    bool login(const std::string& username, const std::string& password, const std::string& hwid = "MOCK_HWID_FINGERPRINT") {
-        if (!initialized) {
-            std::cerr << "[-] SDK not initialized. Call init() first." << std::endl;
-            return false;
+    std::pair<bool, std::string> registerUser(const std::string& username, const std::string& password, const std::string& licenseKey, const std::string& hwid = "") {
+        std::string jsonPayload = "{\"appId\":\"" + appId + "\",\"payload\":\"encrypted_payload_placeholder\"}";
+        std::string response = sendPostRequest("/register", jsonPayload);
+
+        if (response.find("\"success\":true") != std::string::npos) {
+            return {true, "User registered successfully!"};
+        } else {
+            return {false, "Registration failed"};
         }
-
-        std::string rawPayload = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\",\"hwid\":\"" + hwid + "\"}";
-        // AES-256 encryption happens here using tempKey prior to request.
-        std::string encryptedPayload = "encrypted_aes_payload";
-
-        std::string request = "{\"appId\":\"" + appId + "\",\"payload\":\"" + encryptedPayload + "\"}";
-        std::string response = sendPostRequest("/api/client/login", request);
-
-        return response.find("\"success\":true") != std::string::npos;
     }
 
-    bool registerUser(const std::string& username, const std::string& password, const std::string& licenseKey, const std::string& hwid = "MOCK_HWID_FINGERPRINT") {
-        if (!initialized) return false;
+    std::pair<bool, std::string> loginUser(const std::string& username, const std::string& password, const std::string& hwid = "") {
+        std::string jsonPayload = "{\"appId\":\"" + appId + "\",\"payload\":\"encrypted_payload_placeholder\"}";
+        std::string response = sendPostRequest("/login", jsonPayload);
 
-        std::string rawPayload = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\",\"licenseKey\":\"" + licenseKey + "\",\"hwid\":\"" + hwid + "\"}";
-        std::string request = "{\"appId\":\"" + appId + "\",\"payload\":\"encrypted_aes_payload\"}";
-        std::string response = sendPostRequest("/api/client/register", request);
-
-        return response.find("\"success\":true") != std::string::npos;
+        if (response.find("\"success\":true") != std::string::npos) {
+            return {true, "Login successful!"};
+        } else {
+            return {false, "Login failed"};
+        }
     }
 
-    bool activateLicense(const std::string& licenseKey, const std::string& hwid = "MOCK_HWID_FINGERPRINT") {
-        if (!initialized) return false;
+    std::pair<bool, std::string> activateLicense(const std::string& licenseKey, const std::string& hwid = "") {
+        std::string jsonPayload = "{\"appId\":\"" + appId + "\",\"payload\":\"encrypted_payload_placeholder\"}";
+        std::string response = sendPostRequest("/activate", jsonPayload);
 
-        std::string rawPayload = "{\"key\":\"" + licenseKey + "\",\"hwid\":\"" + hwid + "\"}";
-        std::string request = "{\"appId\":\"" + appId + "\",\"payload\":\"encrypted_aes_payload\"}";
-        std::string response = sendPostRequest("/api/client/activate", request);
-
-        return response.find("\"success\":true") != std::string::npos;
+        if (response.find("\"success\":true") != std::string::npos) {
+            return {true, "License activated successfully!"};
+        } else {
+            return {false, "Activation failed"};
+        }
     }
 };
