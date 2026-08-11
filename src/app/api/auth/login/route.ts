@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { username, password } = await req.json();
+    const { username, password, rememberMe } = await req.json();
 
     if (!username || !password) {
       return NextResponse.json({ error: "Username and password are required." }, { status: 400 });
@@ -44,12 +44,13 @@ export async function POST(req: Request) {
     }
 
     // 4. Generate JWT
+    const tokenExpiry = rememberMe ? "30d" : "7d";
     const token = signToken({
       userId: user.id,
       username: user.username,
       role: user.role,
       plan: user.plan,
-    });
+    }, tokenExpiry);
 
     // 5. Build response with cookie
     const response = NextResponse.json({
@@ -67,7 +68,7 @@ export async function POST(req: Request) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      maxAge: 7 * 24 * 60 * 60, // 7 days
+      maxAge: rememberMe ? 30 * 24 * 60 * 60 : 7 * 24 * 60 * 60, // 30 days if remember me, else 7 days
       path: "/",
     });
 
