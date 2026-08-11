@@ -1,0 +1,21 @@
+{
+  "name": "Hyper Auth",
+  "short_name": "Hyper Auth",
+  "description": "Next-generation secure software licensing platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030014",
+  "theme_color": "#ef4444",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
