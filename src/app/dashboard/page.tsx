@@ -106,9 +106,9 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#030014] flex flex-col items-center justify-center relative overflow-hidden">
+      <div className="min-h-screen bg-[#030014] flex flex-col items-center justify-center relative overflow-hidden w-full">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(239,68,68,0.1),transparent_50%)]"></div>
-        <div className="relative z- flex flex-col items-center gap-8">
+        <div className="relative z-10 flex flex-col items-center gap-8 w-full max-w-md px-4">
           <div className="relative">
             <div className="h-20 w-20 rounded-full border-2 border-red-500/30 border-t-red-500 animate-spin shadow-[0_0_30px_rgba(239,68,68,0.3)]"></div>
             <div className="absolute inset-0 h-20 w-20 rounded-full border-2 border-red-500/20 animate-pulse"></div>
