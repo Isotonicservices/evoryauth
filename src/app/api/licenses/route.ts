@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { verifyToken } from "@/lib/jwt";
 import { prisma } from "@/lib/prisma";
-import crypto from "crypto";
+import { generateSecureKey } from "@/lib/security";
 import { verifyAppOwnership, checkSubscription } from "@/lib/auth";
 
 async function getAuthUser() {
@@ -12,7 +12,6 @@ async function getAuthUser() {
   return verifyToken(token);
 }
 
-// GET all licenses for a user app
 export async function GET(req: Request) {
   try {
     const user = await getAuthUser();
@@ -23,7 +22,6 @@ export async function GET(req: Request) {
 
     if (!appId) return NextResponse.json({ error: "App ID is required" }, { status: 400 });
 
-    // Verify ownership of the app
     const hasAccess = await verifyAppOwnership(appId, user.userId);
     if (!hasAccess) return NextResponse.json({ error: "App not found or unauthorized" }, { status: 404 });
 
@@ -38,13 +36,6 @@ export async function GET(req: Request) {
   }
 }
 
-// Helper to generate custom styled licensing keys
-function generateLicenseKey(prefix: string = "SECURE-"): string {
-  const segment = () => crypto.randomBytes(4).toString("hex").toUpperCase();
-  return `${prefix}${segment()}-${segment()}-${segment()}-${segment()}`;
-}
-
-// POST create license key
 export async function POST(req: Request) {
   try {
     const user = await getAuthUser();
@@ -56,7 +47,6 @@ export async function POST(req: Request) {
     const { appId, duration, amount, hwidLock, keyPattern, label } = await req.json();
     if (!appId) return NextResponse.json({ error: "App ID is required" }, { status: 400 });
 
-    // Verify ownership of the app
     const hasAccess = await verifyAppOwnership(appId, user.userId);
     if (!hasAccess) return NextResponse.json({ error: "App not found or unauthorized" }, { status: 404 });
 
@@ -69,19 +59,17 @@ export async function POST(req: Request) {
       let licenseKey: string;
 
       if (keyPattern && keyPattern.trim()) {
-        // Replace * with random hex chars (2 chars per *)
         licenseKey = keyPattern.replace(/\*/g, () =>
-          crypto.randomBytes(1).toString("hex").toUpperCase()
+          Math.random().toString(16).substring(2, 4).toUpperCase()
         );
-        // Make sure the generated key is unique by appending a suffix if needed
         const exists = await prisma.license.findUnique({ where: { key: licenseKey } });
         if (exists) {
           licenseKey = keyPattern.replace(/\*/g, () =>
-            crypto.randomBytes(1).toString("hex").toUpperCase()
-          ) + "-" + crypto.randomBytes(2).toString("hex").toUpperCase();
+            Math.random().toString(16).substring(2, 4).toUpperCase()
+          ) + "-" + Math.random().toString(16).substring(2, 6).toUpperCase();
         }
       } else {
-        licenseKey = generateLicenseKey();
+        licenseKey = generateSecureKey();
       }
 
       const lic = await prisma.license.create({

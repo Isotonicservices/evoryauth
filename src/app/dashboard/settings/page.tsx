@@ -140,7 +140,7 @@ export default function SettingsPortal() {
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl blur opacity-20 group-hover:opacity-40 transition-opacity" />
                   <div className="bg-black/80 border border-white/10 p-4 rounded-xl flex items-center gap-4 relative">
                     <code className="font-mono text-sm text-cyan-300 break-all select-all flex-1">
-                      {regenerating ? "••••••••••••••••••••••••••••••••••••••••••••••••" : `evory_api_live_${user?.id}_${btoa(user?.username || "")}`}
+                      {regenerating ? "••••••••••••••••••••••••••••••••••••••••••••••••" : `hyper_api_live_${user?.id}_${btoa(user?.username || "")}`}
                     </code>
                     <button 
                       onClick={handleCopyKey}

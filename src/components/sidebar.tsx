@@ -90,32 +90,32 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
   return (
     <aside className="w-64 bg-[#05050a]/80 backdrop-blur-3xl border-r border-white/5 flex flex-col justify-between shrink-0 h-screen sticky top-0 z-40 relative overflow-hidden">
       {/* Background glow for sidebar */}
-      <div className="absolute top-0 left-0 w-full h-64 bg-blue-500/5 blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-64 bg-red-500/5 blur-[100px] pointer-events-none" />
       
       <div className="flex flex-col gap-6 p-6 relative z-10">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3 group" suppressHydrationWarning>
           <div className="relative flex items-center justify-center">
-            <div className="absolute inset-0 bg-blue-500 blur-xl opacity-20 group-hover:opacity-40 transition-opacity" />
-            <img src="/logo.png" alt="Logo" className="h-9 w-9 object-contain relative z-10 drop-shadow-[0_0_10px_rgba(59,130,246,0.3)] transition-transform group-hover:scale-110" />
+            <div className="absolute inset-0 bg-red-500 blur-xl opacity-20 group-hover:opacity-40 transition-opacity" />
+            <img src="/logo.png" alt="Logo" className="h-9 w-9 object-contain relative z-10 drop-shadow-[0_0_10px_rgba(239,68,68,0.3)] transition-transform group-hover:scale-110" />
           </div>
-          <span className="font-outfit text-xl font-bold bg-gradient-to-r from-white via-blue-200 to-blue-400 bg-clip-text text-transparent tracking-wide">
-            Evory Auth
+          <span className="font-outfit text-xl font-bold bg-gradient-to-r from-white via-red-200 to-red-400 bg-clip-text text-transparent tracking-wide">
+            Hyper Auth
           </span>
         </Link>
 
         {/* User Profile Section */}
         {user && (
           <div className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors cursor-pointer group relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 p-[2px] flex-shrink-0 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+            <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-red-500 to-orange-600 p-[2px] flex-shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
               <div className="h-full w-full rounded-full bg-[#0a0a14] flex items-center justify-center text-sm font-bold text-white uppercase overflow-hidden">
                 {user.username.substring(0, 2)}
               </div>
             </div>
             <div className="flex flex-col overflow-hidden">
               <span className="text-xs font-bold text-white truncate">{user.username}</span>
-              <span className={`text-[9px] font-bold tracking-widest uppercase ${user.role === 'ADMIN' ? 'text-red-400' : 'text-blue-400'}`}>
+              <span className={`text-[9px] font-bold tracking-widest uppercase ${user.role === 'ADMIN' ? 'text-red-400' : 'text-white'}`}>
                 {user.role}
               </span>
             </div>

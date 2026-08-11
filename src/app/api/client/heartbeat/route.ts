@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid request signature" }, { status: 403 });
     }
 
-    const { key, hwid, ip } = data;
+    const { key, hwid, ip, checksum } = data;
 
     if (ip) {
       const blacklisted = await prisma.ipBlacklist.findFirst({ where: { ip } });
@@ -41,10 +41,6 @@ export async function POST(req: Request) {
       }
     }
 
-    if (!key) {
-      return NextResponse.json({ error: "License key is required for validation" }, { status: 400 });
-    }
-
     const license = await prisma.license.findFirst({
       where: { key, appId },
     });
@@ -54,10 +50,7 @@ export async function POST(req: Request) {
     }
 
     if (license.status !== "ACTIVE") {
-      return NextResponse.json({
-        success: false,
-        error: `License status is ${license.status}. ${license.banReason || ""}`,
-      }, { status: 403 });
+      return NextResponse.json({ success: false, error: "License is not active" }, { status: 403 });
     }
 
     if (license.expiresAt && new Date() > license.expiresAt) {
@@ -65,16 +58,18 @@ export async function POST(req: Request) {
         where: { id: license.id },
         data: { status: "EXPIRED" },
       });
-      return NextResponse.json({ success: false, error: "License key has expired" }, { status: 403 });
+      return NextResponse.json({ success: false, error: "License has expired" }, { status: 403 });
     }
 
     if (app.hwidLock && license.hwidLock && license.hwid && license.hwid !== hwid) {
       return NextResponse.json({ success: false, error: "HWID mismatch detected" }, { status: 403 });
     }
 
+    const nextHeartbeat = Math.floor(Date.now() / 1000) + Math.floor(Math.random() * 300) + 60;
+
     const successResponse = {
       success: true,
-      message: "License validated successfully.",
+      nextHeartbeat,
       expiresAt: license.expiresAt,
     };
 
@@ -83,7 +78,7 @@ export async function POST(req: Request) {
       payload: encryptAES(JSON.stringify(successResponse)),
     });
   } catch (error) {
-    console.error("SDK Validation Error:", error);
-    return NextResponse.json({ error: "Validation failed" }, { status: 500 });
+    console.error("SDK Heartbeat Error:", error);
+    return NextResponse.json({ error: "Heartbeat failed" }, { status: 500 });
   }
 }

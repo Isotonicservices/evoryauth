@@ -10,24 +10,24 @@ import { ShieldCheck, HardDrive, Key, Globe, Eye, Code, Zap } from "lucide-react
 export default function Features() {
   const list = [
     {
-      icon: <ShieldCheck className="h-8 w-8 text-blue-400" />,
+      icon: <ShieldCheck className="h-8 w-8 text-red-400" />,
       title: "AES 256 Handshake Protection",
       description: "Prevent reverse engineers from interception. Custom challenge handshakes ensure validation calls are fully authenticated.",
     },
     {
-      icon: <HardDrive className="h-8 w-8 text-purple-400" />,
+      icon: <HardDrive className="h-8 w-8 text-white" />,
       title: "Hardware Lock (HWID)",
       description: "Lock instances to specific CPUs, motherboards, or network configurations. Prevent multiple clients from reusing a single key.",
     },
     {
-      icon: <Key className="h-8 w-8 text-cyan-400" />,
+      icon: <Key className="h-8 w-8 text-red-400" />,
       title: "Flexible Expiration Durations",
       description: "Create Lifetime, 1 Day, 7 Days, or Custom Duration keys in bulk via the dashboard. Pause keys anytime or ban malicious users.",
     },
     {
       icon: <Globe className="h-8 w-8 text-emerald-400" />,
       title: "Secure File CDN Hosting",
-      description: "Upload updates and installers directly to the Evory Auth CDN. Secure links are verified against license validity before downloading.",
+      description: "Upload updates and installers directly to the Hyper Auth CDN. Secure links are verified against license validity before downloading.",
     },
     {
       icon: <Eye className="h-8 w-8 text-yellow-400" />,
@@ -50,12 +50,12 @@ export default function Features() {
         <div className="text-center mb-16">
           <h1 className="font-outfit text-4xl md:text-6xl font-extrabold mb-4">
             Security Features Built for <br />
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent text-neon-blue">
+            <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
               Scale & Protection
             </span>
           </h1>
           <p className="text-slate-400 max-w-xl mx-auto">
-            From client-side handshakes to server-side rate limits, Evory Auth secures your applications against tampering.
+            From client-side handshakes to server-side rate limits, Hyper Auth secures your applications against tampering.
           </p>
         </div>
 

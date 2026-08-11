@@ -28,16 +28,16 @@ export default function Status() {
         <div className="text-center mb-16">
           <h1 className="font-outfit text-4xl md:text-6xl font-extrabold mb-4">
             System Operations & <br />
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent text-neon-blue">
+            <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
               Real-Time Status
             </span>
           </h1>
           <p className="text-slate-400 max-w-xl mx-auto">
-            Live latency reports and connectivity health scores for the Evory Auth network infrastructure.
+            Live latency reports and connectivity health scores for the Hyper Auth network infrastructure.
           </p>
         </div>
 
-        <GlowCard glowColor="blue" className="mb-8">
+        <GlowCard glowColor="red" className="mb-8">
           <div className="flex items-center gap-3 mb-6 bg-green-500/10 border border-green-500/20 p-4 rounded-xl text-green-400">
             <CheckCircle2 className="h-6 w-6 shrink-0" />
             <div>
@@ -61,15 +61,15 @@ export default function Status() {
 
         {/* Global stats info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <GlowCard glowColor="purple">
+          <GlowCard glowColor="red">
             <h3 className="text-sm font-bold mb-2 flex items-center gap-2">
-              <ShieldCheck className="h-5 w-5 text-purple-400" /> DDOS Mitigation Layer
+              <ShieldCheck className="h-5 w-5 text-red-400" /> DDOS Mitigation Layer
             </h3>
             <p className="text-xs text-slate-400 leading-relaxed">
               Rate limits and Cloudflare enterprise scrubbers are active. Any IP attempting credential stuffing or signature spoofing is automatically locked for 24 hours.
             </p>
           </GlowCard>
-          <GlowCard glowColor="cyan">
+          <GlowCard glowColor="red">
             <h3 className="text-sm font-bold mb-2 flex items-center gap-2">
               Uptime SLA Guarantee
             </h3>

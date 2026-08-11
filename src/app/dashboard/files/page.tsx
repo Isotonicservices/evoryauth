@@ -316,7 +316,7 @@ export default function FileCDN() {
                       </thead>
                       <tbody>
                         {files.map((file) => {
-                          const cppSnippet = `Evory AuthApp.download("${file.id}");`;
+                          const cppSnippet = `Hyper AuthApp.download("${file.id}");`;
                           return (
                             <tr key={file.id} className="border-b border-white/5 hover:bg-white/[0.02]">
                               <td className="py-4 px-6">

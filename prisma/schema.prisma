@@ -1,6 +1,5 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -142,6 +141,14 @@ model Webhook {
 model HwidBlacklist {
   id        String   @id @default(uuid())
   hwid      String   @unique
+  reason    String?
+  appId     String
+  createdAt DateTime @default(now())
+}
+
+model IpBlacklist {
+  id        String   @id @default(uuid())
+  ip        String   @unique
   reason    String?
   appId     String
   createdAt DateTime @default(now())

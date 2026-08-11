@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { encryptAES } from "@/lib/security";
+import { encryptAES, generateRSAKeyPair, encryptRSA, generateSessionToken } from "@/lib/security";
 import crypto from "crypto";
 
 export async function POST(req: Request) {
@@ -19,19 +19,19 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Application is disabled or not found." }, { status: 403 });
     }
 
-    // Generate temporary verification session parameters
-    const tempSessionId = crypto.randomBytes(16).toString("hex");
-    const clientKey = crypto.randomBytes(16).toString("hex"); // 128 bit temp key
+    const rsaKeyPair = generateRSAKeyPair();
+    const sessionToken = generateSessionToken();
+    const clientKey = crypto.randomBytes(32).toString("hex");
 
-    // Formulate dynamic initialization handshake payload
     const responsePayload = {
-      sessionId: tempSessionId,
+      sessionId: sessionToken,
+      serverPublicKey: rsaKeyPair.publicKey,
       tempKey: clientKey,
       encryption: app.encryption,
       version: app.version,
+      timestamp: Date.now()
     };
 
-    // Encrypt response using general SDK secret if enabled
     const encryptedBody = encryptAES(JSON.stringify(responsePayload));
 
     return NextResponse.json({

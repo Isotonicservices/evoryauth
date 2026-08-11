@@ -13,7 +13,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Evory Auth - Premium Licensing & Security SaaS",
+  title: "Hyper Auth - Premium Licensing & Security SaaS",
   description: "Next-generation secure software licensing platform with automated hardware locks, encrypted handshakes, and developer APIs.",
 };
 

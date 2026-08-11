@@ -21,13 +21,12 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/5 text-xs text-blue-400 font-semibold mb-6 shadow-[0_0_15px_rgba(59,130,246,0.1)]"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-red-500/30 bg-red-500/5 text-xs text-red-400 font-semibold mb-6 shadow-[0_0_15px_rgba(239,68,68,0.1)]"
         >
           <Zap className="h-3 w-3" />
-          Evory Auth 2.0: Cyber Security Redefined
+          Hyper Auth 2.0: Cyber Security Redefined
         </motion.div>
 
-        {/* Hero Title */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,7 +34,7 @@ export default function Home() {
           className="font-outfit text-4xl md:text-7xl font-extrabold tracking-tight mb-6"
         >
           Next-Gen Software <br />
-          <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-500 bg-clip-text text-transparent text-neon-blue">
+          <span className="bg-gradient-to-r from-red-400 via-white to-red-400 bg-clip-text text-transparent">
             Licensing & Protection
           </span>
         </motion.h1>
@@ -59,7 +58,7 @@ export default function Home() {
         >
           <Link
             href="/register"
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
+            className="flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(239,68,68,0.3)] hover:shadow-[0_0_30px_rgba(239,68,68,0.5)]"
           >
             <Shield className="h-5 w-5" />
             Protect Your First App
@@ -85,13 +84,13 @@ export default function Home() {
             <div className="w-3 h-3 rounded-full bg-red-500/60" />
             <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
             <div className="w-3 h-3 rounded-full bg-green-500/60" />
-            <div className="text-xs text-slate-500 font-mono ml-4 select-none">https://portal.Evory Auth.com/dashboard</div>
+            <div className="text-xs text-slate-500 font-mono ml-4 select-none">https://portal.Hyper Auth.com/dashboard</div>
           </div>
           <div className="bg-slate-900/60 backdrop-blur-md p-6 flex flex-col md:flex-row gap-6 min-h-[350px]">
             {/* Sidebar teaser */}
             <div className="w-full md:w-48 flex flex-col gap-2">
-              <div className="h-8 bg-blue-500/10 rounded-md border border-blue-500/20 flex items-center px-3 gap-2">
-                <Cpu className="h-4 w-4 text-blue-400" />
+              <div className="h-8 bg-red-500/10 rounded-md border border-red-500/20 flex items-center px-3 gap-2">
+                <Cpu className="h-4 w-4 text-red-400" />
                 <span className="text-xs text-slate-300 font-semibold">Overview</span>
               </div>
               <div className="h-8 bg-slate-800/30 rounded-md flex items-center px-3 gap-2">
@@ -161,9 +160,9 @@ export default function Home() {
       {/* Footer */}
       <footer className="relative z-10 border-t border-white/5 bg-black/50 backdrop-blur-xl mt-20 py-8">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center gap-4">
-          <img src="/logo.png" alt="Evory Team" className="h-10 w-10 object-contain drop-shadow-[0_0_15px_rgba(59,130,246,0.5)] grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+          <img src="/logo.png" alt="Hyper Team" className="h-10 w-10 object-contain drop-shadow-[0_0_15px_rgba(59,130,246,0.5)] grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
           <p className="text-slate-500 text-sm font-medium tracking-wide">
-            © {new Date().getFullYear()} <span className="text-blue-400 font-bold">Evory Team</span>. All rights reserved.
+            © {new Date().getFullYear()} <span className="text-blue-400 font-bold">Hyper Team</span>. All rights reserved.
           </p>
         </div>
       </footer>

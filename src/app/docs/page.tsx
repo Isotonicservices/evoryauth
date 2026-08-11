@@ -20,7 +20,7 @@ std::string name = "App_Name";
 std::string ownerid = "Owner_ID";
 std::string secret = "App_Secret";
 std::string version = "1.0";
-std::string url = "https://evoryauth.online/api/client";
+std::string url = "https://hyperauth.online/api/client";
 std::string path = ""; 
 
 api KeyAuthApp(name, ownerid, secret, version, url, path);
@@ -50,9 +50,9 @@ int main() {
 }`;
 
   const pythonExample = `# Python SDK Integration Example
-from Evory Auth import Evory Auth
+from Hyper Auth import Hyper Auth
 
-app = Evory Auth(
+app = Hyper Auth(
     app_id="YOUR_APP_ID",
     secret="YOUR_APP_SECRET",
     version="1.0"

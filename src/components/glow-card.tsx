@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 interface GlowCardProps {
   children: React.ReactNode;
-  glowColor?: "blue" | "purple" | "cyan" | "green" | "none";
+  glowColor?: "blue" | "purple" | "cyan" | "green" | "red" | "none";
   className?: string;
   withShimmer?: boolean;
 }
@@ -16,6 +16,7 @@ export function GlowCard({ children, glowColor = "blue", className = "", withShi
     purple: "rgba(168, 85, 247, 0.15)",
     cyan: "rgba(6, 182, 212, 0.15)",
     green: "rgba(34, 197, 94, 0.15)",
+    red: "rgba(239, 68, 68, 0.15)",
     none: "transparent",
   };
 
@@ -24,6 +25,7 @@ export function GlowCard({ children, glowColor = "blue", className = "", withShi
     purple: "glass-purple",
     cyan: "glass-cyan",
     green: "glass-green",
+    red: "glass-red",
     none: "glass-panel",
   };
 
@@ -60,6 +62,8 @@ export function GlowCard({ children, glowColor = "blue", className = "", withShi
               ? "from-purple-500 to-pink-500"
               : glowColor === "cyan"
               ? "from-cyan-500 to-emerald-500"
+              : glowColor === "red"
+              ? "from-red-500 to-orange-500"
               : "from-green-500 to-emerald-500"
           }`}
         />

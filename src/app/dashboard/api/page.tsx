@@ -158,7 +158,7 @@ export default function ApiDocsPage() {
   }, []);
   const clientUrl = typeof window !== "undefined" && window.location.hostname !== "localhost"
     ? `${window.location.origin}/api/client`
-    : "https://Evory Auth.online/api/client";
+    : "https://Hyper Auth.online/api/client";
 
   const cppCode = `#include <iostream>
 #include <Windows.h>
@@ -200,10 +200,10 @@ int main() {
     return 0;
 }`;
 
-  const SDKcode = `// Evory Auth JavaScript SDK
+  const SDKcode = `// Hyper Auth JavaScript SDK
 // Install: npm install axios
 
-const Evory Auth = {
+const Hyper Auth = {
   baseUrl: "${baseUrl}/api/client",
   appId: "${appId}",
   appSecret: "${appSecret}",
@@ -258,7 +258,7 @@ const Evory Auth = {
 };
 
 // Usage:
-const result = await Evory Auth.authenticate("Secure-XXXX-YYYY-ZZZZ-WWWW", getHWID());
+const result = await Hyper Auth.authenticate("Secure-XXXX-YYYY-ZZZZ-WWWW", getHWID());
 if (result.success) {
   console.log("✅ License valid!", result.user);
 } else {
@@ -269,7 +269,7 @@ if (result.success) {
 using System.Net.Http;
 using System.Text.Json;
 
-public class Evory Auth
+public class Hyper Auth
 {
     private static readonly HttpClient http = new HttpClient();
     private const string BaseUrl = "${baseUrl}/api/client";

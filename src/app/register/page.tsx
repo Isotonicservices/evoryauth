@@ -48,11 +48,10 @@ export default function Register() {
     <main className="relative min-h-screen flex items-center justify-center p-6 bg-[#020106]">
       <ParticleBg />
 
-      <GlowCard glowColor="purple" className="w-full max-w-md p-8 z-10 relative">
+      <GlowCard glowColor="red" className="w-full max-w-md p-8 z-10 relative">
         <div className="flex flex-col items-center mb-8">
-          <ShieldCheck className="h-10 w-10 text-purple-500 mb-2" />
-          <h2 className="text-xl font-bold font-outfit">Join Evory Auth Ecosystem</h2>
-          <p className="text-xs text-slate-500">First user account automatically receives system ADMIN permissions.</p>
+          <ShieldCheck className="h-10 w-10 text-red-500 mb-2" />
+          <h2 className="text-xl font-bold font-outfit">Join Hyper Auth Ecosystem</h2>
         </div>
 
         {error && (
@@ -78,7 +77,7 @@ export default function Register() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                className="w-full bg-slate-900/60 border border-white/10 rounded-lg pl-10 pr-3 py-2 text-xs focus:outline-none focus:border-purple-500 text-white"
+                className="w-full bg-slate-900/60 border border-white/10 rounded-lg pl-10 pr-3 py-2 text-xs focus:outline-none focus:border-red-500 text-white"
               />
             </div>
           </div>
@@ -93,7 +92,7 @@ export default function Register() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full bg-slate-900/60 border border-white/10 rounded-lg pl-10 pr-3 py-2 text-xs focus:outline-none focus:border-purple-500 text-white"
+                className="w-full bg-slate-900/60 border border-white/10 rounded-lg pl-10 pr-3 py-2 text-xs focus:outline-none focus:border-red-500 text-white"
               />
             </div>
           </div>
@@ -108,7 +107,7 @@ export default function Register() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full bg-slate-900/60 border border-white/10 rounded-lg pl-10 pr-3 py-2 text-xs focus:outline-none focus:border-purple-500 text-white"
+                className="w-full bg-slate-900/60 border border-white/10 rounded-lg pl-10 pr-3 py-2 text-xs focus:outline-none focus:border-red-500 text-white"
               />
             </div>
           </div>
@@ -116,7 +115,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="mt-4 bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all duration-300 flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(168,85,247,0.2)]"
+            className="mt-4 bg-red-600 hover:bg-red-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all duration-300 flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(239,68,68,0.2)]"
           >
             {loading ? "Registering account..." : "Create Account"}
             <ArrowRight className="h-4 w-4" />
@@ -125,7 +124,7 @@ export default function Register() {
 
         <div className="mt-8 text-center text-xs text-slate-400">
           Already registered?{" "}
-          <Link href="/login" className="text-purple-400 hover:underline">
+          <Link href="/login" className="text-red-400 hover:underline">
             Login session
           </Link>
         </div>

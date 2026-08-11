@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { decryptAES, encryptAES } from "@/lib/security";
+import { decryptAES, encryptAES, verifyRequestIntegrity } from "@/lib/security";
 
 export async function POST(req: Request) {
   try {
-    const { appId, payload } = await req.json();
+    const { appId, payload, signature } = await req.json();
 
-    if (!appId || !payload) {
+    if (!appId || !payload || !signature) {
       return NextResponse.json({ error: "Invalid parameters" }, { status: 400 });
     }
 
@@ -18,14 +18,24 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Application is paused or invalid" }, { status: 403 });
     }
 
-    // Decrypt parameters
     const decryptedText = decryptAES(payload);
     const data = JSON.parse(decryptedText);
 
-    const { key, hwid } = data;
+    if (!verifyRequestIntegrity(data, signature, app.secret)) {
+      return NextResponse.json({ error: "Invalid request signature" }, { status: 403 });
+    }
+
+    const { key, hwid, ip } = data;
 
     if (!key) {
       return NextResponse.json({ error: "License key is required" }, { status: 400 });
+    }
+
+    if (ip) {
+      const blacklisted = await prisma.ipBlacklist.findFirst({ where: { ip } });
+      if (blacklisted) {
+        return NextResponse.json({ error: "This IP has been banned from this application." }, { status: 403 });
+      }
     }
 
     const license = await prisma.license.findFirst({
@@ -44,7 +54,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "License key already activated maximum times" }, { status: 403 });
     }
 
-    // ── HWID Blacklist check ──
     if (hwid) {
       const blacklisted = await prisma.hwidBlacklist.findFirst({ where: { hwid, appId } });
       if (blacklisted) {
@@ -52,8 +61,6 @@ export async function POST(req: Request) {
       }
     }
 
-
-    // Perform activation/HWID binding
     let expiryDate: Date | null = null;
     if (license.duration !== "lifetime") {
       const days = parseInt(license.duration) || 30;
@@ -70,7 +77,6 @@ export async function POST(req: Request) {
       },
     });
 
-    // Log action
     await prisma.log.create({
       data: {
         action: "ACTIVATE",

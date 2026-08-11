@@ -126,8 +126,7 @@ export default function Dashboard() {
       <div className="bg-mesh" />
       <Sidebar isAdmin={user?.role === "ADMIN" || user?.role === "ADMIN_MINI"} />
 
-      <main className="flex-1 p-8 overflow-y-auto max-w-7xl relative z-10 animate-fadeIn">
-        {/* Header Controls */}
+      <main className="flex-1 p-8 overflow-y-auto relative z-10 animate-fadeIn">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10">
           <div>
             <h1 className="text-3xl font-extrabold font-outfit tracking-tight text-white flex items-center gap-3">
@@ -141,7 +140,7 @@ export default function Dashboard() {
             <select
               value={selectedApp}
               onChange={(e) => setSelectedApp(e.target.value)}
-              className="bg-slate-900 border border-white/10 rounded-lg px-4 py-2 text-xs font-semibold focus:outline-none focus:border-blue-500 text-white min-w-[200px] shadow-inner transition-all hover:bg-slate-800"
+              className="bg-slate-900 border border-white/10 rounded-lg px-4 py-2 text-xs font-semibold focus:outline-none focus:border-red-500 text-white min-w-[200px] shadow-inner transition-all hover:bg-slate-800"
             >
               {apps.map((app) => (
                 <option key={app.id} value={app.id}>
@@ -152,13 +151,12 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Aggregate statistics widgets */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 stagger-children">
-          <GlowCard glowColor="blue" className="p-5 stat-card stat-blue" withShimmer>
+          <GlowCard glowColor="red" className="p-5 stat-card stat-red" withShimmer>
             <div className="flex items-center justify-between mb-4">
               <span className="text-[11px] text-slate-400 font-bold uppercase tracking-wider">Protected Apps</span>
-              <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
-                <Cpu className="h-4 w-4 text-blue-400" />
+              <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                <Cpu className="h-4 w-4 text-red-400" />
               </div>
             </div>
             <div className="flex items-end gap-3">
@@ -167,11 +165,11 @@ export default function Dashboard() {
             </div>
           </GlowCard>
           
-          <GlowCard glowColor="purple" className="p-5 stat-card stat-purple" withShimmer>
+          <GlowCard glowColor="red" className="p-5 stat-card stat-red" withShimmer>
             <div className="flex items-center justify-between mb-4">
               <span className="text-[11px] text-slate-400 font-bold uppercase tracking-wider">Active Licenses</span>
-              <div className="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
-                <ShieldCheck className="h-4 w-4 text-purple-400" />
+              <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                <ShieldCheck className="h-4 w-4 text-red-400" />
               </div>
             </div>
             <div className="flex items-end gap-3">
@@ -179,11 +177,11 @@ export default function Dashboard() {
             </div>
           </GlowCard>
 
-          <GlowCard glowColor="cyan" className="p-5 stat-card stat-cyan" withShimmer>
+          <GlowCard glowColor="red" className="p-5 stat-card stat-red" withShimmer>
             <div className="flex items-center justify-between mb-4">
               <span className="text-[11px] text-slate-400 font-bold uppercase tracking-wider">Total Keys Issued</span>
-              <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
-                <Users className="h-4 w-4 text-cyan-400" />
+              <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                <Users className="h-4 w-4 text-red-400" />
               </div>
             </div>
             <div className="flex items-end gap-3">
@@ -191,11 +189,11 @@ export default function Dashboard() {
             </div>
           </GlowCard>
 
-          <GlowCard glowColor="green" className="p-5 stat-card stat-indigo" withShimmer>
+          <GlowCard glowColor="red" className="p-5 stat-card stat-red" withShimmer>
             <div className="flex items-center justify-between mb-4">
               <span className="text-[11px] text-slate-400 font-bold uppercase tracking-wider">CDN Downloads</span>
-              <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 shadow-[0_0_15px_rgba(34,197,94,0.2)]">
-                <BarChart3 className="h-4 w-4 text-emerald-400" />
+              <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                <BarChart3 className="h-4 w-4 text-red-400" />
               </div>
             </div>
             <div className="flex items-end gap-3">
@@ -204,16 +202,15 @@ export default function Dashboard() {
           </GlowCard>
         </div>
 
-        {/* Charts & Interactive Reports */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8 stagger-children">
-          <GlowCard glowColor="blue" className="lg:col-span-2 flex flex-col">
+          <GlowCard glowColor="red" className="lg:col-span-2 flex flex-col">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-sm font-bold flex items-center gap-2 text-white">
-                <BarChart3 className="h-4 w-4 text-blue-400" /> Live Telemetry Data
+                <BarChart3 className="h-4 w-4 text-red-400" /> Live Telemetry Data
               </h3>
               <div className="flex gap-2">
-                <span className="flex items-center gap-1.5 text-[10px] text-slate-400"><div className="w-2 h-2 rounded-full bg-blue-500"></div> Requests</span>
-                <span className="flex items-center gap-1.5 text-[10px] text-slate-400"><div className="w-2 h-2 rounded-full bg-purple-500"></div> Auth Events</span>
+                <span className="flex items-center gap-1.5 text-[10px] text-slate-400"><div className="w-2 h-2 rounded-full bg-red-500"></div> Requests</span>
+                <span className="flex items-center gap-1.5 text-[10px] text-slate-400"><div className="w-2 h-2 rounded-full bg-white"></div> Auth Events</span>
               </div>
             </div>
             <div className="flex-1 min-h-[280px] w-full">
@@ -221,12 +218,12 @@ export default function Dashboard() {
                 <AreaChart data={stats?.chartData || []} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                   <defs>
                     <linearGradient id="colorReqs" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
                     </linearGradient>
                     <linearGradient id="colorLic" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#ffffff" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#ffffff" stopOpacity={0}/>
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
@@ -243,24 +240,23 @@ export default function Dashboard() {
                     itemStyle={{ fontSize: "12px", fontWeight: "bold" }}
                     labelStyle={{ color: "#94a3b8", fontSize: "10px", marginBottom: "4px" }}
                   />
-                  <Area type="monotone" dataKey="requests" stroke="#3b82f6" strokeWidth={3} fillOpacity={1} fill="url(#colorReqs)" activeDot={{ r: 6, fill: "#3b82f6", stroke: "#fff", strokeWidth: 2 }} />
-                  <Area type="monotone" dataKey="licenses" stroke="#8b5cf6" strokeWidth={3} fillOpacity={1} fill="url(#colorLic)" activeDot={{ r: 6, fill: "#8b5cf6", stroke: "#fff", strokeWidth: 2 }} />
+                  <Area type="monotone" dataKey="requests" stroke="#ef4444" strokeWidth={3} fillOpacity={1} fill="url(#colorReqs)" activeDot={{ r: 6, fill: "#ef4444", stroke: "#fff", strokeWidth: 2 }} />
+                  <Area type="monotone" dataKey="licenses" stroke="#ffffff" strokeWidth={3} fillOpacity={1} fill="url(#colorLic)" activeDot={{ r: 6, fill: "#ffffff", stroke: "#ef4444", strokeWidth: 2 }} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
           </GlowCard>
 
-          <GlowCard glowColor="purple" className="flex flex-col h-full">
+          <GlowCard glowColor="red" className="flex flex-col h-full">
             <h3 className="text-sm font-bold mb-6 flex items-center gap-2 text-white">
-              <Calendar className="h-4 w-4 text-purple-400" /> Security Audit Log
+              <Calendar className="h-4 w-4 text-red-400" /> Security Audit Log
             </h3>
-            <div className="flex flex-col gap-3 flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-purple-500/50">
+            <div className="flex flex-col gap-3 flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-red-500/50">
               {stats?.recentLogs && stats.recentLogs.length > 0 ? (
                 stats.recentLogs.map((log) => {
                   const style = getLogStyle(log.action);
                   return (
-                    <div key={log.id} className="relative pl-3 border-l-2 border-white/5 hover:border-purple-500/50 transition-colors py-2 group">
-                      {/* Hover subtle background */}
+                    <div key={log.id} className="relative pl-3 border-l-2 border-white/5 hover:border-red-500/50 transition-colors py-2 group">
                       <div className="absolute inset-0 bg-white/[0.02] opacity-0 group-hover:opacity-100 rounded-r-lg transition-opacity pointer-events-none" />
                       
                       <div className="flex justify-between items-start mb-1 relative z-10">
@@ -287,7 +283,7 @@ export default function Dashboard() {
                 </div>
               )}
             </div>
-            <button className="w-full mt-4 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider hover:text-purple-400 transition-colors border-t border-white/5 pt-4">
+            <button className="w-full mt-4 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider hover:text-red-400 transition-colors border-t border-white/5 pt-4">
               View Complete Audit Trail →
             </button>
           </GlowCard>
