@@ -241,7 +241,7 @@ export default function AppUsersManager() {
           <div className="flex flex-wrap justify-between items-start gap-4 mb-8">
             <div>
               <h1 className="text-2xl font-bold font-outfit flex items-center gap-2">
-                <Users className="h-6 w-6 text-purple-400" /> App Users Manager
+                <Users className="h-6 w-6 text-red-400" /> App Users Manager
               </h1>
               <p className="text-xs text-slate-500 mt-1">
                 View and manage client registrations, login activities, HWID bindings, and blacklists.
@@ -279,23 +279,23 @@ export default function AppUsersManager() {
               {
                 label: "Registered Users",
                 value: clientUsers.length,
-                icon: <User className="h-4 w-4 text-blue-400" />,
-                color: "blue",
-                glow: "blue",
+                icon: <User className="h-4 w-4 text-red-400" />,
+                color: "red",
+                glow: "red",
               },
               {
                 label: "Active HWID Locks",
                 value: clientUsers.filter((u) => u.hwid || u.license.hwid).length,
                 icon: <Fingerprint className="h-4 w-4 text-orange-400" />,
                 color: "orange",
-                glow: "cyan",
+                glow: "red",
               },
               {
                 label: "Blacklisted Devices",
                 value: blacklist.length,
                 icon: <ShieldAlert className="h-4 w-4 text-red-400" />,
                 color: "red",
-                glow: "purple",
+                glow: "red",
               },
               {
                 label: "Banned App Users",

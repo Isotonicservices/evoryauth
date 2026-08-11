@@ -341,7 +341,7 @@ else:
           {apps.length > 0 && (
             <GlowCard glowColor="red" className="mb-8">
               <div className="flex items-center gap-3 flex-wrap">
-                <Zap className="h-4 w-4 text-blue-400 shrink-0" />
+                <Zap className="h-4 w-4 text-red-400 shrink-0" />
                 <span className="text-xs font-bold">Quick Fill — Select your app to auto-fill examples:</span>
                 <select
                   onChange={e => {
@@ -354,13 +354,13 @@ else:
                       setAppVersion(app.version || "1.0");
                     }
                   }}
-                  className="bg-slate-900 border border-white/10 rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:border-blue-500"
+                  className="bg-slate-900 border border-white/10 rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:border-red-500"
                 >
                   {apps.map(a => <option key={a.id} value={a.id}>{a.name}</option>)}
                 </select>
                 <div className="flex items-center gap-2 text-[10px] text-slate-500">
                   <span>App ID:</span>
-                  <code className="text-blue-300 font-mono">{appId.substring(0, 8)}…</code>
+                  <code className="text-red-300 font-mono">{appId.substring(0, 8)}…</code>
                 </div>
               </div>
             </GlowCard>
@@ -382,14 +382,14 @@ else:
                       onChange={(e) => setDisplaySnippet(e.target.checked)}
                       className="sr-only peer"
                     />
-                    <div className="w-8 h-4 bg-slate-800 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-400 after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-purple-600 peer-checked:after:bg-white"></div>
+                    <div className="w-8 h-4 bg-slate-800 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-400 after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-red-600 peer-checked:after:bg-white"></div>
                     <span className="ml-2 text-[10px] font-semibold text-slate-400">Display Code Snippet</span>
                   </label>
                 </div>
               </div>
 
               {displaySnippet ? (
-                <div className="bg-[#080812] border border-white/5 rounded-xl p-4 font-mono text-[10px] text-purple-300 space-y-1 relative group select-all">
+                <div className="bg-[#080812] border border-white/5 rounded-xl p-4 font-mono text-[10px] text-red-300 space-y-1 relative group select-all">
                   <button
                     onClick={() => {
                       const snippet = `std::string name = "${appName}";\nstd::string ownerid = "${ownerId}";\nstd::string secret = "${appSecret}";\nstd::string version = "${appVersion}";\nstd::string url = "${clientUrl}";\nstd::string path = "";`;

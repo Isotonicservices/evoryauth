@@ -12,6 +12,7 @@ export default function Login() {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [secretSequence, setSecretSequence] = useState<string[]>([]);
@@ -296,6 +297,16 @@ export default function Login() {
                   />
                 </div>
               </div>
+
+              <label className="flex items-center gap-3 cursor-pointer group relative z-10">
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="toggle-switch"
+                />
+                <span className="text-[11px] text-slate-400 font-bold uppercase tracking-widest">Remember Session</span>
+              </label>
 
               <button
                 type="submit"

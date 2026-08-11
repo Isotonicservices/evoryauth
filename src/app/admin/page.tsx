@@ -112,7 +112,7 @@ export default function AdminPanel() {
             <div className="lg:col-span-2">
               <GlowCard glowColor="red">
                 <h3 className="text-sm font-bold mb-6 flex items-center gap-2">
-                  <Users className="h-4 w-4 text-purple-400" /> Registered Platform Users
+                  <Users className="h-4 w-4 text-red-400" /> Registered Platform Users
                 </h3>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs text-slate-300">
