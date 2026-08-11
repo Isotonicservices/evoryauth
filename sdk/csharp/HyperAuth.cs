@@ -1,6 +1,8 @@
 using System;
 using System.Text;
-using System.Security.Cryptography;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace HyperAuthSDK
 {
@@ -8,70 +10,139 @@ namespace HyperAuthSDK
     {
         private readonly string appId;
         private readonly string secret;
-        private readonly string version;
+        private readonly string baseUrl;
         private string sessionId;
         private string tempKey;
         private bool initialized;
+        private static readonly HttpClient httpClient = new HttpClient();
 
-        public HyperAuth(string appNameId, string appSecret, string appVersion)
+        public HyperAuth(string appNameId, string appSecret, string baseUrl = "https://www.hyperion.buzz/api/client")
         {
             appId = appNameId;
             secret = appSecret;
-            version = appVersion;
+            this.baseUrl = baseUrl;
             initialized = false;
         }
 
-        private string SendPostRequest(string endpoint, string jsonPayload)
+        private async Task<string> SendPostRequestAsync(string endpoint, string jsonPayload)
         {
-            // Simulate Web API calls
-            Console.WriteLine($"[SDK C# Debug] POST to {endpoint} with: {jsonPayload}");
-            return "{\"success\":true,\"payload\":\"mocked_action_response\"}";
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync(baseUrl + endpoint, content);
+            return await response.Content.ReadAsStringAsync();
         }
 
-        public bool Init()
+        public async Task<(bool success, string message)> AuthenticateAsync(string licenseKey, string hwid = null)
         {
-            string payload = $"{{\"appId\":\"{appId}\"}}";
-            string response = SendPostRequest("/api/client/handshake", payload);
-            
-            if (response.Contains("\"success\":true"))
+            try
             {
-                sessionId = "MOCK-SESSION-C#";
-                tempKey = "MOCK-KEY-C#";
-                initialized = true;
-                return true;
+                var payload = new
+                {
+                    appId = appId,
+                    appSecret = secret,
+                    licenseKey = licenseKey,
+                    hwid = hwid
+                };
+                string jsonPayload = JsonConvert.SerializeObject(payload);
+                string response = await SendPostRequestAsync("/authenticate", jsonPayload);
+
+                dynamic result = JsonConvert.DeserializeObject(response);
+                if (result.success == true)
+                {
+                    return (true, "License verified successfully!");
+                }
+                else
+                {
+                    return (false, result.error?.ToString() ?? "Invalid license key");
+                }
             }
-            return false;
+            catch (Exception ex)
+            {
+                return (false, $"Connection error: {ex.Message}");
+            }
         }
 
-        public bool Login(string username, string password, string hwid = "MOCK_CSHARP_HWID")
+        public async Task<(bool success, string message)> RegisterUserAsync(string username, string password, string licenseKey, string hwid = null)
         {
-            if (!initialized) throw new InvalidOperationException("SDK is not initialized. Run Init() first.");
+            try
+            {
+                var payload = new
+                {
+                    appId = appId,
+                    payload = "encrypted_payload_placeholder"
+                };
+                string jsonPayload = JsonConvert.SerializeObject(payload);
+                string response = await SendPostRequestAsync("/register", jsonPayload);
 
-            string rawPayload = $"{{\"username\":\"{username}\",\"password\":\"{password}\",\"hwid\":\"{hwid}\"}}";
-            string request = $"{{\"appId\":\"{appId}\",\"payload\":\"encrypted_aes_payload\"}}";
-            string response = SendPostRequest("/api/client/login", request);
-
-            return response.Contains("\"success\":true");
+                dynamic result = JsonConvert.DeserializeObject(response);
+                if (result.success == true)
+                {
+                    return (true, "User registered successfully!");
+                }
+                else
+                {
+                    return (false, result.error?.ToString() ?? "Registration failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Connection error: {ex.Message}");
+            }
         }
 
-        public bool Register(string username, string password, string licenseKey, string hwid = "MOCK_CSHARP_HWID")
+        public async Task<(bool success, string message)> LoginUserAsync(string username, string password, string hwid = null)
         {
-            if (!initialized) return false;
+            try
+            {
+                var payload = new
+                {
+                    appId = appId,
+                    payload = "encrypted_payload_placeholder"
+                };
+                string jsonPayload = JsonConvert.SerializeObject(payload);
+                string response = await SendPostRequestAsync("/login", jsonPayload);
 
-            string request = $"{{\"appId\":\"{appId}\",\"payload\":\"encrypted_aes_payload\"}}";
-            string response = SendPostRequest("/api/client/register", request);
-
-            return response.Contains("\"success\":true");
+                dynamic result = JsonConvert.DeserializeObject(response);
+                if (result.success == true)
+                {
+                    return (true, "Login successful!");
+                }
+                else
+                {
+                    return (false, result.error?.ToString() ?? "Login failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Connection error: {ex.Message}");
+            }
         }
 
-        public bool Activate(string licenseKey, string hwid = "MOCK_CSHARP_HWID")
+        public async Task<(bool success, string message)> ActivateLicenseAsync(string licenseKey, string hwid = null)
         {
-            if (!initialized) return false;
+            try
+            {
+                var payload = new
+                {
+                    appId = appId,
+                    payload = "encrypted_payload_placeholder"
+                };
+                string jsonPayload = JsonConvert.SerializeObject(payload);
+                string response = await SendPostRequestAsync("/activate", jsonPayload);
 
-            string request = $"{{\"appId\":\"{appId}\",\"payload\":\"encrypted_aes_payload\"}}";
-            string response = SendPostRequest("/api/client/activate", request);
-
-            return response.Contains("\"success\":true");
+                dynamic result = JsonConvert.DeserializeObject(response);
+                if (result.success == true)
+                {
+                    return (true, "License activated successfully!");
+                }
+                else
+                {
+                    return (false, result.error?.ToString() ?? "Activation failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Connection error: {ex.Message}");
+            }
         }
     }
 }
